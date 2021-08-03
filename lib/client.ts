@@ -52,8 +52,6 @@ export default class Client {
                     case 'DELETE':
                         return_data = (await fetch.delete(call, {headers: this.headers})).data
                         break;
-                    default:
-                        reject("I must've fucked up reaal bad for it to end up here lmao | client.ts:47")
                 }
                 resolve(return_data)
             } catch (err) {

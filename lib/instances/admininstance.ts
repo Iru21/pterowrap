@@ -37,19 +37,19 @@ export default class AdminInstance {
                 let return_data = null
                 switch(_method) {
                     case 'GET':
-                        return_data = (await fetch.get(call, {headers: this.headers})).data
+                        return_data = (await fetch.get(call,{headers: this.headers}).catch(err => {throw new Error(err)})).data
                         break;
                     case 'POST':
-                        return_data = (await fetch.post(call, body, {headers: this.headers})).data
+                        return_data = (await fetch.post(call, body, {headers: this.headers}).catch(err => {throw new Error(err)})).data
                         break;
                     case 'PATCH':
-                        return_data = (await fetch.patch(call, body, {headers: this.headers})).data
+                        return_data = (await fetch.patch(call, body, {headers: this.headers}).catch(err => {throw new Error(err)})).data
                         break;
                     case 'PUT':
-                        return_data = (await fetch.put(call, body, {headers: this.headers})).data
+                        return_data = (await fetch.put(call, body, {headers: this.headers}).catch(err => {throw new Error(err)})).data
                         break;
                     case 'DELETE':
-                        return_data = (await fetch.delete(call, {headers: this.headers})).data
+                        return_data = (await fetch.delete(call, {headers: this.headers}).catch(err => {throw new Error(err)})).data
                         break;
                 }
                 resolve(return_data)

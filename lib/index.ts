@@ -18,7 +18,14 @@ async function test() {
     
     //console.log(await client.nodes.listAllocations(14))
 
-    
+    // console.log(await client.nests.list())
+
+    //console.log(await client.nests.get(7))
+
+    //console.log(await client.nests.listEggs(5))
+
+    console.log(await client.nests.getEgg(5, 28))
+
 }
 
 export default {

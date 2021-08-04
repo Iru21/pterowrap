@@ -1,5 +1,6 @@
 import * as axios from "axios";
 import NodeManager from "../managers/nodemanager";
+import LocationManager from "../managers/locationmanager";
 const fetch = axios.default
 
 type method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
@@ -12,7 +13,8 @@ export default class AdminInstance {
     url: string
 
     /* Managers */
-    public nodes: NodeManager
+    nodes: NodeManager
+    locations: LocationManager
 
     constructor(_url : string, _api_key :string) {
         this.url = format_url(_url)
@@ -25,6 +27,7 @@ export default class AdminInstance {
 
         /* Manager initialization */
         this.nodes = new NodeManager(this)
+        this.locations = new LocationManager(this)
 
     }
     call(endpoint : string = '', _method : method = 'GET', body = {}): any {

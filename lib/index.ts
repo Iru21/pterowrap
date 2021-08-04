@@ -6,7 +6,8 @@ test()
 
 async function test() {
     const client = new AdminInstance("https://panel.discordbothosting.com/", "dFzy1VyYo8aE6lplE3mZ5exe9I9xtU1iDKdqg0Phkjhb9oVl");
-    console.log(await client.nodes.list(true))
+    //console.log(await client.nodes.list(true))
+    console.log(await client.locations.list(true))
 }
 
 export default {

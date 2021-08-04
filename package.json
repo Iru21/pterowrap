@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rmdir /s /q dist && tsc",
     "watch": "rmdir /s /q dist && tsc -w"
   },
   "keywords": [],

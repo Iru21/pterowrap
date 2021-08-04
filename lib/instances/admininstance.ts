@@ -1,25 +1,22 @@
 import * as axios from "axios";
-import NodeManager from "./managers/nodemanager";
+import NodeManager from "../managers/nodemanager";
 const fetch = axios.default
 
 type method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
-type api = "CLIENT" | "ADMIN"
 
-export default class Client {
+export default class AdminInstance {
 
     private api_key: string
     private headers: { [key: string]: string }
 
-    api_type: api
     url: string
 
     /* Managers */
     public nodes: NodeManager
 
-    constructor(_url : string, _api_key :string, _api_type : api = "CLIENT") {
+    constructor(_url : string, _api_key :string) {
         this.url = format_url(_url)
         this.api_key = _api_key
-        this.api_type = _api_type
         this.headers = {
             'Authorization': `Bearer ${this.api_key}`,
             'Content-Type': 'application/json',
@@ -33,8 +30,7 @@ export default class Client {
     call(endpoint : string = '', _method : method = 'GET', body = {}): any {
         return new Promise<any>(async (resolve : any, reject : any) => {
             try {
-                const a = this.api_type == "CLIENT" ? "/client/" : "/application/"
-                const call = this.url + a + endpoint
+                const call = this.url + "/application/" + endpoint
                 let return_data = null
                 switch(_method) {
                     case 'GET':

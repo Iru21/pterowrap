@@ -1,16 +1,15 @@
-import Client from "../client";
+import AdminInstance from "../instances/admininstance";
 import Node from "../types/node";
 
 export default class NodeManager {
 
-    private client: Client;
+    private client: AdminInstance;
 
-    constructor(_client: Client) {
+    constructor(_client: AdminInstance) {
         this.client = _client;
     }
 
     async list(handlePagination: boolean = false): Promise<Node[]> {
-        if(this.check()) throw new Error("Tried calling application endpoint from client type!")
         let current_page = (await this.client.call("nodes"))
         let returner = []
         if(handlePagination) {
@@ -31,9 +30,5 @@ export default class NodeManager {
             returner = current_page.data
         }
         return returner
-    }
-
-    private check(): boolean {
-        return this.client.api_type != "ADMIN"
     }
 }

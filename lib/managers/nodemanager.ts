@@ -104,4 +104,5 @@ export default class NodeManager {
     deleteAllocation(nodeId: string, allocationId: Number) {
         this.client.call("nodes/" + nodeId + "/allocations/" + allocationId , 'DELETE')
     }
+    
 }

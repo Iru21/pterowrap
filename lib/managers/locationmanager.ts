@@ -28,8 +28,10 @@ export default class LocationManager {
         return returner
     }
 
-    async get(id: number): Promise<Location> {
-        return new Location((await this.client.call("locations/" + id)).attributes)
+    async get(id: number): Promise<Location | null> {
+        const data = await this.client.call("locations/" + id)
+        if(!data) return null
+        return new Location(data.attributes)
     }
 
     async create(shortName: string, longName: string | null): Promise<Location> {

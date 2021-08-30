@@ -7,6 +7,7 @@ import ClientInstance from "./instances/clientinstance"
 test()
 
 async function test() {
+    
     const url = process.env.API_URL
     const key = process.env.API_KEY
     const client = new AdminInstance(url, key);

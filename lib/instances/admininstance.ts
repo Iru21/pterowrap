@@ -2,6 +2,7 @@ import * as axios from "axios";
 import NodeManager from "../managers/nodemanager";
 import LocationManager from "../managers/locationmanager";
 import NestManager from "../managers/nestmanager";
+import ServerManager from "../managers/servermanager";
 const fetch = axios.default
 
 type method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
@@ -17,8 +18,10 @@ export default class AdminInstance {
     nodes: NodeManager
     locations: LocationManager
     nests: NestManager
+    servers: ServerManager
 
-    constructor(_url : string, _api_key :string) {
+    constructor(_url : string | undefined, _api_key : string | undefined) {
+        if(!_url || !_api_key) throw new Error("No API key/url provided!")
         this.url = format_url(_url)
         this.api_key = _api_key
         this.headers = {
@@ -31,6 +34,7 @@ export default class AdminInstance {
         this.nodes = new NodeManager(this)
         this.locations = new LocationManager(this)
         this.nests = new NestManager(this)
+        this.servers = new ServerManager(this)
 
     }
     call(endpoint : string = '', _method : method = 'GET', body = {}): any {

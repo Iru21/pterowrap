@@ -10,7 +10,8 @@ export default class ClientInstance {
 
     url: string
 
-    constructor(_url : string, _api_key :string) {
+    constructor(_url : string | undefined, _api_key : string | undefined) {
+        if(!_url || !_api_key) throw new Error("No API key/url provided!")
         this.url = format_url(_url)
         this.api_key = _api_key
         this.headers = {

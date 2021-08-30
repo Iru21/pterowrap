@@ -28,7 +28,7 @@ export default class LocationManager {
         return returner
     }
 
-    async get(id: Number): Promise<Location> {
+    async get(id: number): Promise<Location> {
         return new Location((await this.client.call("locations/" + id)).attributes)
     }
 
@@ -48,7 +48,7 @@ export default class LocationManager {
         return returnedLocation
     }
 
-    async edit(id: Number, shortName: string, longName: string | null): Promise<Location> {
+    async edit(id: number, shortName: string, longName: string | null): Promise<Location> {
         if(longName == null) longName = shortName
         if(shortName.length > 60 || longName.length > 255) throw new Error("Provided shortName(amx 60)/longName(max 255) value exeeds max length!")
         const returnedLocation = new Location(
@@ -64,7 +64,7 @@ export default class LocationManager {
         return returnedLocation
     }
 
-    async delete(id: Number) {
+    async delete(id: number) {
         await this.client.call(
             "locations/" + id,
             "DELETE"

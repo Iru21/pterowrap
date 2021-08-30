@@ -29,7 +29,7 @@ export default class NestManager {
         return returner
     }
 
-    async get(id: Number): Promise<Nest> {
+    async get(id: number): Promise<Nest> {
         return new Nest((await this.client.call("nests/" + id)).attributes)
     }
 
@@ -43,7 +43,28 @@ export default class NestManager {
         return returner
     }
 
-    async getEgg(nestId: Number, eggId: Number): Promise<Egg> {
+    async getAllEggs(): Promise<Egg[]> {
+        const nests = await this.list()
+        const eggs = []
+        for(var i = 0; i < nests.length; i++) {
+            const nestEggs = await this.listEggs(nests[i].id)
+            eggs.push(...nestEggs)
+        }
+        return eggs
+    }
+
+    async getEgg(nestId: number, eggId: number): Promise<Egg> {
         return new Egg((await this.client.call("nests/" + nestId + "/eggs/" + eggId)).attributes)
+    }
+
+    async getEgg2(eggId: number): Promise<Egg | null> {
+        const eggs = await this.getAllEggs()
+        for(var i = 0; i < eggs.length; i ++) {
+            if(eggs[i].id == eggId) {
+                return eggs[i]
+            }
+        }
+
+        return null
     }
 }

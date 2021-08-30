@@ -5,20 +5,20 @@ import Node from "../types/node";
 type NodeParams = {
     name: string
     description: string | null
-    locationId: Number
-    isPublic: boolean | null
+    location_id: number
+    public: boolean | null
     fqdn: string
     scheme: string
-    isBehindProxy: string
-    memory: Number
-    memoryOverallocate: Number
-    disk: Number
-    diskOverallocate: Number
+    behind_proxy: string
+    memory: number
+    memory_overallocate: number
+    disk: number
+    disk_overallocate: number
     daemonBase: string
-    daemonListen: Number
-    daemonSFTP: Number
+    daemonListen: number
+    daemonSFTP: number
     inMaintenanceMode: boolean
-    uploadSize: Number
+    uploadSize: number
 }
 
 type AllocationParams = {
@@ -59,53 +59,17 @@ export default class NodeManager {
 
     async create(params: NodeParams): Promise<Node> {
         if(params.description == null) params.description = ""
-        if(params.isPublic == null) params.isPublic = true
+        if(params.public == null) params.public = true
 
-        const options = {
-            name: params.name,
-            description: params.description,
-            location_id: params.locationId,
-            public: params.isPublic,
-            fqdn: params.fqdn,
-            scheme: params.scheme,
-            behind_proxy: params.isBehindProxy,
-            memory: params.memory,
-            memory_overallocate: params.memoryOverallocate,
-            disk: params.disk,
-            disk_overallocate: params.diskOverallocate,
-            daemon_base: params.daemonBase,
-            daemon_sftp: params.daemonSFTP,
-            daemon_listen: params.daemonListen,
-            maintenance_mode: params.inMaintenanceMode,
-            upload_size: params.uploadSize
-        }
-        const returnedNode = new Node((await this.client.call("nodes", 'POST', options)))
+        const returnedNode = new Node((await this.client.call("nodes", 'POST', params)))
         return returnedNode
     }
 
     async edit(id: Number, params: NodeParams): Promise<Node> {
         if(params.description == null) params.description = ""
-        if(params.isPublic == null) params.isPublic = true
+        if(params.public == null) params.public = true
 
-        const options = {
-            name: params.name,
-            description: params.description,
-            location_id: params.locationId,
-            public: params.isPublic,
-            fqdn: params.fqdn,
-            scheme: params.scheme,
-            behind_proxy: params.isBehindProxy,
-            memory: params.memory,
-            memory_overallocate: params.memoryOverallocate,
-            disk: params.disk,
-            disk_overallocate: params.diskOverallocate,
-            daemon_base: params.daemonBase,
-            daemon_sftp: params.daemonSFTP,
-            daemon_listen: params.daemonListen,
-            maintenance_mode: params.inMaintenanceMode,
-            upload_size: params.uploadSize
-        }
-        const returnedNode = new Node((await this.client.call("nodes/" + id, 'PATCH', options)))
+        const returnedNode = new Node((await this.client.call("nodes/" + id, 'PATCH', params)))
         return returnedNode
     }
 

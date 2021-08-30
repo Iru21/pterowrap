@@ -8,17 +8,17 @@ type NodeParams = {
     location_id: number
     public: boolean | null
     fqdn: string
-    scheme: string
-    behind_proxy: string
+    scheme: 'http' | 'https'
+    behind_proxy: string | null
     memory: number
     memory_overallocate: number
     disk: number
     disk_overallocate: number
-    daemonBase: string
-    daemonListen: number
-    daemonSFTP: number
-    inMaintenanceMode: boolean
-    uploadSize: number
+    daemon_base: string | null
+    daemon_listen: number
+    daemon_sftp: number
+    maintenance_mode: boolean | null
+    upload_ize: number | null
 }
 
 type AllocationParams = {
@@ -60,6 +60,8 @@ export default class NodeManager {
     async create(params: NodeParams): Promise<Node> {
         if(params.description == null) params.description = ""
         if(params.public == null) params.public = true
+
+        if(!(await this.client.locations.get(params.location_id))) throw new Error("Invalid location id!")
 
         const returnedNode = new Node((await this.client.call("nodes", 'POST', params)))
         return returnedNode

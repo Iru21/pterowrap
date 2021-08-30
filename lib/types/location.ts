@@ -1,6 +1,6 @@
 export default class Location {
 
-    id: Number
+    id: number
     shortName: string
     longName: string
     updatedAt: string

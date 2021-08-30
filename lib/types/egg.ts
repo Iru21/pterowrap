@@ -1,9 +1,9 @@
 export default class Egg {
     
-    id: Number
+    id: number
     name: string
     uuid: string
-    nestId: Number
+    nestId: number
     author: string
     description: string | null
     dockerImage: string

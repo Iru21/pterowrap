@@ -1,28 +1,28 @@
 export default class Node {
 
-    id: Number
+    id: number
     uuid: string
     isPublic: boolean
     name: string
     description: string
-    locationId: Number
+    locationId: number
     fqdn: string
     scheme: string
     isBehindProxy: boolean
     inMaintenanceMode: boolean
-    memory: Number
-    memoryOverallocate: Number
-    disk: Number
-    diskOverallocate: Number
-    uploadSize: Number
-    daemonListen: Number
-    daemonSFTP: Number
+    memory: number
+    memoryOverallocate: number
+    disk: number
+    diskOverallocate: number
+    uploadSize: number
+    daemonListen: number
+    daemonSFTP: number
     daemonBase: string
     createdAt: string
     updatedAt: string
     allocatedResources: {
-        memory: Number,
-        disk: Number
+        memory: number,
+        disk: number
     }
 
     constructor(raw : any) {

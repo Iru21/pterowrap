@@ -1,6 +1,6 @@
 export default class Nest {
 
-    id: Number
+    id: number
     uuid: string
     author: string
     name: string

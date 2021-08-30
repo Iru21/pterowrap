@@ -1,9 +1,9 @@
 export default class Allocation {
 
-    id: Number
+    id: number
     ip: string
     alias: string | null
-    port: Number
+    port: number
     assigned: boolean
 
     constructor (raw: any) {

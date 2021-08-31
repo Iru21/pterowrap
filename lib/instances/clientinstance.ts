@@ -5,6 +5,7 @@ type method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
 
 import Server from "../types/server"
 import Statistics from "../types/statistics"
+import ClientServer from "../types/clientserver"
 
 import { PowerAction } from "../arguments"
 export default class ClientInstance {
@@ -76,9 +77,9 @@ export default class ClientInstance {
         return returner
     }
 
-    async getServerInformation(id: number): Promise<Server | null> {
+    async getServerInformation(id: number): Promise<ClientServer | null> {
         try {
-            return new Server((await this.call('servers/' + id)).attributes)
+            return new ClientServer((await this.call('servers/' + id)).attributes)
         } catch { return null }
     }
 

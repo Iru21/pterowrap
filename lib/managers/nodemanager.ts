@@ -2,30 +2,7 @@ import AdminInstance from "../instances/admininstance";
 import Allocation from "../types/allocation";
 import Node from "../types/node";
 
-type NodeParams = {
-    name: string
-    description: string | null
-    location_id: number
-    public: boolean | null
-    fqdn: string
-    scheme: 'http' | 'https'
-    behind_proxy: string | null
-    memory: number
-    memory_overallocate: number
-    disk: number
-    disk_overallocate: number
-    daemon_base: string | null
-    daemon_listen: number
-    daemon_sftp: number
-    maintenance_mode: boolean | null
-    upload_ize: number | null
-}
-
-type AllocationParams = {
-    ip: string
-    alias: string | null
-    ports: string[]
-}
+import { NodeParams, AllocationParams } from "../arguments"
 export default class NodeManager {
 
     private client: AdminInstance;

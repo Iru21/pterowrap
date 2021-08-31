@@ -4,13 +4,18 @@
   "homepage": "https://github.com/Iru21/pterowrap",
   "repository": "https://github.com/Iru21/pterowrap",
   "description": "A node.js wrapper for Pterodactyl API",
-  "main": "./dist/index.js",
+  "keywords": [
+    "pterodactyl",
+    "pterodactyl api",
+    "ptero",
+    "wrapper"
+  ],
+  "main": "./dist/index.js ",
   "scripts": {
     "clear-dist": "rmdir /s /q dist",
     "build": "tsc",
     "watch": "tsc -w"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {

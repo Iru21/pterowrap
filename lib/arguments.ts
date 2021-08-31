@@ -42,7 +42,7 @@ export type ServerParams = {
     ]
     start_on_completion?: boolean
     skip_scripts?: boolean
-    oom_disable?: boolean
+    oom_disabled?: boolean
 }
 
 export type NodeParams = {
@@ -68,4 +68,22 @@ export type AllocationParams = {
     ip: string
     alias?: string
     ports: string[]
+}
+
+export type ServerBuildParams = {
+    allocation: number
+    oom_disabled?: boolean
+    limits?: [
+        memory?: number,
+        swap?: number,
+        disk?: number,
+        io?: number,
+        cpu?: number
+    ]
+    add_allocations?: number[]
+    remove_allocations?: number[]
+    feature_limits: [
+        databases: number | null,
+        allocations?: number | null
+    ]
 }

@@ -4,7 +4,7 @@ require("dotenv").config()
 
 import AdminInstance from "./instances/admininstance"
 import ClientInstance from "./instances/clientinstance"
-import { UserParams, AllocationParams, NodeParams, ServerParams } from './arguments'
+import { UserParams, AllocationParams, NodeParams, ServerParams, ServerBuildParams } from './arguments'
 test()
 
 async function test() {
@@ -89,4 +89,5 @@ export {
     AllocationParams,
     NodeParams,
     ServerParams,
+    ServerBuildParams
 }

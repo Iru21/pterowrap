@@ -1,7 +1,9 @@
 {
   "name": "pterowrap",
   "version": "1.0.2",
-  "description": "",
+  "homepage": "https://github.com/Iru21/pterowrap",
+  "repository": "https://github.com/Iru21/pterowrap",
+  "description": "A node.js wrapper for Pterodactyl API",
   "main": "./dist/index.js",
   "scripts": {
     "clear-dist": "rmdir /s /q dist",

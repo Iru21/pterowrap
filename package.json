@@ -4,8 +4,9 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "rmdir /s /q dist && tsc",
-    "watch": "rmdir /s /q dist && tsc -w"
+    "clear-dist": "rmdir /s /q dist",
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "keywords": [],
   "author": "",

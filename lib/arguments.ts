@@ -87,3 +87,9 @@ export type ServerBuildParams = {
         allocations?: number | null
     ]
 }
+
+export type DatabaseParams = {
+    databases: string
+    remote: string
+    host: string
+}

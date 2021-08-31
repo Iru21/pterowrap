@@ -3,6 +3,10 @@ const fetch = axios.default
 
 type method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
 
+import Server from "../types/server"
+import Statistics from "../types/statistics"
+
+import { PowerAction } from "../arguments"
 export default class ClientInstance {
 
     private api_key: string
@@ -51,6 +55,45 @@ export default class ClientInstance {
                 reject(new Error(`${data.errors[0].status} | ${data.errors[0].code} | ${data.errors[0].detail}`))
             }
         });
+    }
+
+    async listServers(): Promise<Server[]> {
+        let current_page = (await this.call())
+        let returner = []
+        const pages = current_page.meta.pagination.total_pages
+        let attIterator = 0
+        for (let i = 0; i < pages; i++) {
+            for(let j = 0; j < current_page.data.length; j++) {
+                returner[attIterator] = new Server(current_page.data[j].attributes)
+                attIterator++
+            }
+            let next_link = current_page.meta.pagination.links.next
+            if(next_link) {
+                next_link = next_link.replace(this.url, "")
+                current_page = (await this.call())
+            }
+        }
+        return returner
+    }
+
+    async getServerInformation(id: number): Promise<Server | null> {
+        try {
+            return new Server((await this.call('servers/' + id)).attributes)
+        } catch { return null }
+    }
+
+    async getServerResources(id: number): Promise<Statistics | null> {
+        try {
+            return new Statistics((await this.call(`servers/${id}/utilization`)).attributes)
+        } catch { return null }
+    }
+
+    sendConsoleCommand(id: number, command: string) {
+        this.call(`servers/${id}/command`, 'POST', {command: command})
+    }
+
+    sendPowerAction(id: number, action: PowerAction) {
+        this.call(`servers/${id}/power`, 'POST', {signal: action})
     }
 }
 

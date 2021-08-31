@@ -93,3 +93,5 @@ export type DatabaseParams = {
     remote: string
     host: string
 }
+
+export type PowerAction = 'start' | 'stop' | 'restart' | 'kill'

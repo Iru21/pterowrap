@@ -12,32 +12,36 @@ async function test() {
     const key = process.env.API_KEY
     const client = new AdminInstance(url, key);
 
-    console.log(await client.nodes.list())
+    try {
+        //console.log(await client.nodes.list())
 
-    // console.log(await client.locations.get(7))
+        // console.log(await client.locations.get(7))
 
-    // const nodes = await client.nodes.list()
-    // for(var i = 0; i < nodes.length; i++) {
-    //     console.log(await client.nodes.listAllocations(nodes[i].id))
-    // }
-    
-    //console.log(await client.nodes.listAllocations(14))
+        // const nodes = await client.nodes.list()
+        // for(var i = 0; i < nodes.length; i++) {
+        //     console.log(await client.nodes.listAllocations(nodes[i].id))
+        // }
+        
+        //console.log(await client.nodes.listAllocations(14))
 
-    //console.log(await client.nests.list())
+        //console.log(await client.nests.list())
 
-    //console.log(await client.nests.get(7))
+        console.log(await client.nests.get(999))
 
-    //console.log(await client.nests.listEggs(5))
+        //console.log(await client.nests.listEggs(5))
 
-    //console.log(await client.nests.getEgg(5, 28))
+        //console.log(await client.nests.getEgg(5, 28))
 
-    //console.log(await client.call("nests/5/eggs/28"))
+        //console.log(await client.call("nests/5/eggs/28"))
 
-    //console.log((await client.call("servers")).data[0])
+        //console.log((await client.call("servers")).data[0])
 
-    //console.log(await client.servers.list())
+        //console.log(await client.servers.list())
 
-    //console.log(await client.servers.get(154))
+        //console.log(await client.servers.get(154))
+    } catch (e) {
+        console.error(e)
+    }
 
 }
 

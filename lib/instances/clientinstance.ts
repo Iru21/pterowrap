@@ -29,24 +29,26 @@ export default class ClientInstance {
                 let return_data = null
                 switch(_method) {
                     case 'GET':
-                        return_data = (await fetch.get(call, {headers: this.headers}).catch(err => {throw new Error(err)})).data
+                        return_data = (await fetch.get(call, {headers: this.headers}).catch(err => {throw err})).data
                         break;
                     case 'POST':
-                        return_data = (await fetch.post(call, body, {headers: this.headers}).catch(err => {throw new Error(err)})).data
+                        return_data = (await fetch.post(call, body, {headers: this.headers}).catch(err => {throw err})).data
                         break;
                     case 'PATCH':
-                        return_data = (await fetch.patch(call, body, {headers: this.headers}).catch(err => {throw new Error(err)})).data
+                        return_data = (await fetch.patch(call, body, {headers: this.headers}).catch(err => {throw err})).data
                         break;
                     case 'PUT':
-                        return_data = (await fetch.put(call, body, {headers: this.headers}).catch(err => {throw new Error(err)})).data
+                        return_data = (await fetch.put(call, body, {headers: this.headers}).catch(err => {throw err})).data
                         break;
                     case 'DELETE':
-                        return_data = (await fetch.delete(call, {headers: this.headers}).catch(err => {throw new Error(err)})).data
+                        return_data = (await fetch.delete(call, {headers: this.headers}).catch(err => {throw err})).data
                         break;
                 }
                 resolve(return_data)
-            } catch (err) {
-                reject(err)
+            } catch (err : any) {
+                const data = err.response.data
+                console.log(data.errors.length == 1 ? data.errors[0] : data.errors)
+                reject(new Error(data.errors[0].detail))
             }
         });
     }

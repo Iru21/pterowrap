@@ -48,7 +48,7 @@ export default class ClientInstance {
             } catch (err : any) {
                 const data = err.response.data
                 console.log(data.errors.length == 1 ? data.errors[0] : data.errors)
-                reject(new Error(data.errors[0].detail))
+                reject(new Error(`${data.errors[0].status} | ${data.errors[0].code} | ${data.errors[0].detail}`))
             }
         });
     }

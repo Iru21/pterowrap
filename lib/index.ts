@@ -71,6 +71,7 @@ async function test() {
         //     setTimeout(() => client.users.delete(newUser.id), 1000)
         // }, 1000)
 
+        //console.log(await client.users.get(3453453))
 
     } catch (e) {
         console.error(e)

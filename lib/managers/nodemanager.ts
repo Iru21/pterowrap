@@ -30,8 +30,10 @@ export default class NodeManager {
         return returner
     }
 
-    async get(id: Number): Promise<Node> {
-        return new Node((await this.client.call("nodes/" + id)).attributes)
+    async get(id: Number): Promise<Node | null> {
+        try {
+            return new Node((await this.client.call("nodes/" + id)).attributes)
+        } catch { return null }
     }
 
     async create(params: NodeParams): Promise<Node> {
@@ -44,12 +46,14 @@ export default class NodeManager {
         return returnedNode
     }
 
-    async edit(id: Number, params: NodeParams): Promise<Node> {
-        if(params.description == null) params.description = ""
-        if(params.public == null) params.public = true
+    async edit(id: Number, params: NodeParams): Promise<Node | null> {
+        try {
+            if(params.description == null) params.description = ""
+            if(params.public == null) params.public = true
 
-        const returnedNode = new Node((await this.client.call("nodes/" + id, 'PATCH', params)))
-        return returnedNode
+            const returnedNode = new Node((await this.client.call("nodes/" + id, 'PATCH', params)))
+            return returnedNode
+        } catch { return null }
     }
 
     async delete(id: Number) {

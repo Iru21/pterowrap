@@ -29,9 +29,9 @@ export default class LocationManager {
     }
 
     async get(id: number): Promise<Location | null> {
-        const data = await this.client.call("locations/" + id)
-        if(!data) return null
-        return new Location(data.attributes)
+        try {
+            return new Location((await this.client.call("locations/" + id)).attributes)
+        } catch { return null }
     }
 
     async create(shortName: string, longName: string | null): Promise<Location> {
@@ -50,24 +50,26 @@ export default class LocationManager {
         return returnedLocation
     }
 
-    async edit(id: number, shortName: string, longName: string | null): Promise<Location> {
-        if(longName == null) longName = shortName
-        if(shortName.length > 60 || longName.length > 255) throw new Error("Provided shortName(amx 60)/longName(max 255) value exeeds max length!")
-        const returnedLocation = new Location(
-            await this.client.call(
-                "locations/" + id,
-                "PATCH",
-                {
-                    short: shortName,
-                    long: longName,
-                }
+    async edit(id: number, shortName: string, longName: string | null): Promise<Location | null> {
+        try {
+            if(longName == null) longName = shortName
+            if(shortName.length > 60 || longName.length > 255) throw new Error("Provided shortName(amx 60)/longName(max 255) value exeeds max length!")
+            const returnedLocation = new Location(
+                await this.client.call(
+                    "locations/" + id,
+                    "PATCH",
+                    {
+                        short: shortName,
+                        long: longName,
+                    }
+                )
             )
-        )
-        return returnedLocation
+            return returnedLocation
+        } catch { return null }
     }
 
-    async delete(id: number) {
-        await this.client.call(
+    delete(id: number) {
+        this.client.call(
             "locations/" + id,
             "DELETE"
         )

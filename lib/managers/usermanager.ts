@@ -30,12 +30,17 @@ export default class UserManager {
         return returner
     }
 
-    async get(id: number): Promise<User> {
-        return new User((await this.client.call("users/" + id)).attributes)
+    async get(id: number): Promise<User | null> {
+        try {
+            return new User((await this.client.call("users/" + id)).attributes)
+        } catch { return null }
+        
     }
 
-    async getByExternalId(id: any): Promise<User> {
-        return new User((await this.client.call("users/external/" + id.toString())).attributes)
+    async getByExternalId(id: any): Promise<User | null> {
+        try {
+            return new User((await this.client.call("users/external/" + id.toString())).attributes)
+        } catch { return null }
     }
 
     async create(params: UserParams): Promise<User> {
@@ -43,12 +48,14 @@ export default class UserManager {
         return returnedUser
     }
 
-    async edit(id: any, params: UserParams): Promise<User> {
-        const returnedUser = new User((await this.client.call("users/" + id.toString(), "PATCH", params)).attributes)
-        return returnedUser
+    async edit(id: number, params: UserParams): Promise<User | null> {
+        try {
+            const returnedUser = new User((await this.client.call("users/" + id, "PATCH", params)).attributes)
+            return returnedUser
+        } catch { return null }
     }
 
-    async delete(id: any) {
-        this.client.call("users/" + id.toString(), "DELETE")
+    async delete(id: number) {
+        this.client.call("users/" + id, "DELETE")
     }
 }

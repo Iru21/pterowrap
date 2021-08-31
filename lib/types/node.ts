@@ -24,6 +24,7 @@ export default class Node {
         memory: number,
         disk: number
     }
+    raw: any
 
     constructor(raw : any) {
         this.id = raw.id;
@@ -50,5 +51,6 @@ export default class Node {
             memory: raw.allocated_resources.memory,
             disk: raw.allocated_resources.disk,
         }
+        this.raw = raw
     }
 }

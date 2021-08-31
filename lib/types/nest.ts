@@ -7,6 +7,7 @@ export default class Nest {
     description: string | null
     createdAt: string
     updatedAt: string
+    raw: any
 
     constructor(raw: any) {
         this.id = raw.id
@@ -16,5 +17,6 @@ export default class Nest {
         this.description = raw.description == null ? "" : raw.description
         this.createdAt = raw.created_at
         this.updatedAt = raw.updated_at
+        this.raw = raw
     }
 }

@@ -5,6 +5,7 @@ export default class Location {
     longName: string
     updatedAt: string
     createdAt: string
+    raw: any
 
     constructor(raw: any) {
         this.id = raw.id;
@@ -12,5 +13,6 @@ export default class Location {
         this.longName = raw.long
         this.updatedAt = raw.updated_at
         this.createdAt = raw.created_at
+        this.raw = raw
     }
 }

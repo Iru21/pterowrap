@@ -12,6 +12,7 @@ export default class User {
     "2fa": boolean
     created_at: string
     updated_at: string
+    raw: any
 
     constructor(raw: any) {
         this.id = raw.id
@@ -26,6 +27,7 @@ export default class User {
         this["2fa"] = raw["2fa"]
         this.created_at = raw.created_at
         this.updated_at = raw.updated_at
+        this.raw = raw
     }
 
 }

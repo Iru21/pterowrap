@@ -13,6 +13,7 @@ export default class Egg {
     updatedAt: string
     script: any
     startup: string
+    raw: any
 
     constructor(raw: any) {
         this.id = raw.id
@@ -28,5 +29,6 @@ export default class Egg {
         this.startup = raw.startup
         this.createdAt = raw.created_at
         this.updatedAt = raw.updated_at
+        this.raw = raw
     }    
 }

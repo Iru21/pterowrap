@@ -5,6 +5,7 @@ export default class Allocation {
     alias: string | null
     port: number
     assigned: boolean
+    raw: any
 
     constructor (raw: any) {
         this.id = raw.id
@@ -12,5 +13,6 @@ export default class Allocation {
         this.alias = raw.alias
         this.port = raw.port
         this.assigned = raw.assigned
+        this.raw = raw
     }
 }

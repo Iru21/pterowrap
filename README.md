@@ -1,4 +1,5 @@
 # PteroWrap
+[![npm version](https://badge.fury.io/js/pterowrap.svg)](https://badge.fury.io/js/pterowrap)
 
 A node.js wrapper for Pterodactyl API
 

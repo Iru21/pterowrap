@@ -16,8 +16,8 @@
     "build": "tsc",
     "watch": "tsc -w"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Iru21",
+  "license": "GPL-3.0 License",
   "devDependencies": {
     "@types/node": "^16.7.6",
     "nodemon": "^2.0.12",

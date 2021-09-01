@@ -24,3 +24,7 @@ const client = new AdminInstance(url, key);
     console.log(server.name)
 })();
 ```
+
+## Documentation
+
+### [Click Here](https://github.com/Iru21/pterowrap/wiki)

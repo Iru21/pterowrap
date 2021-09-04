@@ -7,6 +7,8 @@ import Server from "../types/server"
 import Statistics from "../types/statistics"
 import ClientServer from "../types/clientserver"
 
+import format_url from "../utils/formaturl"
+
 import { PowerAction } from "../arguments"
 export default class ClientInstance {
 
@@ -95,32 +97,5 @@ export default class ClientInstance {
 
     sendPowerAction(id: number, action: PowerAction) {
         this.call(`servers/${id}/power`, 'POST', {signal: action})
-    }
-}
-
-//from pterodactyl.js - modified
-function format_url(url_: string): string {
-    let url;
-    if (/(?!127\.0{1,3}\.0{1,3}\.0{0,2}$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/g.test(url_)) {
-        if (/^http(s|):\/\//g.test(url_)) {
-            url = url_;
-        }
-        else {
-            url = `https://${url_}`;
-        }
-    }
-    else {
-        if (/^http(s|):\/\//g.test(url_)) {
-            url = url_;
-        }
-        else {
-            url = `https://${url_}`;
-        }
-    }
-    if (/\/$/g.test(url)) {
-        return url + 'api';
-    }
-    else {
-        return url + '/api';
     }
 }

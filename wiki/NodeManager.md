@@ -65,7 +65,6 @@
 
 - `id` - Node ID
 
-
 ## createAllocation(nodeId, params)
 
     Creates an allocation for a specific node

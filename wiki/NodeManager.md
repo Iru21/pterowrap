@@ -2,7 +2,7 @@
 
 ## List()
 
-    Lists are present nodes
+    Lists all present nodes
 
 ## get(id)
 

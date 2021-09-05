@@ -8,11 +8,11 @@ Client Instance functions
 
 ### listServers()
 
-    Lists currently loggin in user's servers
+    Lists user's servers
 
 ### getServerInformation(id)
 
-    Returns incomplite server information
+    Returns incomplete server information
 
 - `id` - Server ID
 

@@ -18,12 +18,6 @@ export default function format_url(url_: string): string {
         }
     }
     if(/\/$/g.test(url)) url = url.slice(0, url.lastIndexOf('/'))
-    if (!(/\/(api)$/g.test(url))) {
-        if (/\/$/g.test(url)) {
-            return url + 'api';
-        }
-        else {
-            return url + '/api';
-        }
-    } else return url
+    if (!(/\/(api)$/g.test(url))) return url + '/api';
+    else return url
 }

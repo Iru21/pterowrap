@@ -57,7 +57,7 @@ export default class ServerManager {
             const eggProperties = await this.client.nests.getEgg2(params.egg)
             if(!eggProperties) throw new Error("Invalid egg id provided!")
             if(useEggProperties) {
-                params.docker_image = eggProperties.dockerImage
+                params.docker_image = eggProperties.docker_image
                 params.startup = eggProperties.startup
             }
 

@@ -47,9 +47,12 @@ export default class ServerManager {
         } catch { return null }
     }
 
+    /**
+     * @description When useEggProperties is true, the params.docker_image and params.startup will be automatically overridden by the egg's startup and docker_image properties. If used, leave them as empty strings in the params.
+     */
     async create(useEggProperties: boolean, params: ServerParams): Promise<Server | null> {
         try {
-            if(!this.client.users.get(params.user)) throw new Error("Invalid user id provided!")
+            if(!(await this.client.users.get(params.user))) throw new Error("Invalid user id provided!")
 
             const eggProperties = await this.client.nests.getEgg2(params.egg)
             if(!eggProperties) throw new Error("Invalid egg id provided!")

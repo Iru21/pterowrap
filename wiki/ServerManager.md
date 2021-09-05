@@ -24,10 +24,11 @@
 
 - `id` - Server External ID
 
-### create(params)
+### create(userEggProperties, params)
 
     Creates a new server from provided parameters, then returns it
 
+- `useEggProperties` - Whether to use egg properties from egg provided in params. When set to true, the params.docker_image and params.startup will be automatically overridden by the egg's startup and docker_image properties. If used, leave them as empty strings in the params.
 - `params`
   - `external_id` (String) Nullable
   - `name` (String)

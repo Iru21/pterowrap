@@ -12,6 +12,10 @@ Admin Instance functions and managers
 
 ### [Nest Manager](https://github.com/Iru21/pterowrap/wiki/%5BA%5D-Nest-Manager)
 
+### [User Manager](https://github.com/Iru21/pterowrap/wiki/%5BA%5D-User-Manager)
+
+### [Server Manager](https://github.com/Iru21/pterowrap/wiki/%5BA%5D-Server-Manager)
+
 ## API functions
 
 ---

@@ -1,18 +1,18 @@
 export default class Location {
 
     id: number
-    shortName: string
-    longName: string
-    updatedAt: string
-    createdAt: string
+    short: string
+    long: string
+    updated_at: string
+    created_at: string
     raw: any
 
     constructor(raw: any) {
         this.id = raw.id;
-        this.shortName = raw.short
-        this.longName = raw.long
-        this.updatedAt = raw.updated_at
-        this.createdAt = raw.created_at
+        this.short = raw.short
+        this.long = raw.long
+        this.updated_at = raw.updated_at
+        this.created_at = raw.created_at
         this.raw = raw
     }
 }

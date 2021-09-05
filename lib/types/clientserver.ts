@@ -4,7 +4,7 @@ export default class ClientServer {
     identifier: string
     uuid: string
     name: string
-    description?: string
+    description: string | null
     limits: {
         memory: number
         swap: number

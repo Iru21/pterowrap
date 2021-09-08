@@ -62,7 +62,7 @@ export default class ClientInstance {
 
     async listServers(): Promise<Server[]> {
         let current_page = (await this.call())
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {
@@ -92,7 +92,7 @@ export default class ClientInstance {
     }
 
     sendConsoleCommand(id: number, command: string) {
-        this.call(`servers/${id}/command`, 'POST', {command: command})
+        this.call(`servers/${id}/command`, 'POST', {command})
     }
 
     sendPowerAction(id: number, action: PowerAction) {

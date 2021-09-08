@@ -1,4 +1,4 @@
-//from pterodactyl.js - modified
+// from pterodactyl.js - modified
 export default function format_url(url_: string): string {
     let url;
     if (/(?!127\.0{1,3}\.0{1,3}\.0{0,2}$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/g.test(url_)) {

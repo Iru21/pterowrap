@@ -7,7 +7,8 @@
     "rules": {
         "variable-name": false,
         "prefer-for-of": false,
-        "triple-equals": false
+        "triple-equals": false,
+        "no-console": false
     },
     "rulesDirectory": []
 }

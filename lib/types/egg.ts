@@ -1,5 +1,5 @@
 export default class Egg {
-    
+
     id: number
     name: string
     uuid: string
@@ -28,5 +28,5 @@ export default class Egg {
         this.created_at = raw.created_at
         this.updated_at = raw.updated_at
         this.raw = raw
-    }    
+    }
 }

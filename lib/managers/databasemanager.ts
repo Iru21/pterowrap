@@ -13,7 +13,7 @@ export default class DatabaseManager {
 
     async list(server: number): Promise<Database[]> {
         let current_page = (await this.client.call(`servers/${server}/databases`))
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {

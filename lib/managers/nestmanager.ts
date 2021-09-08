@@ -12,7 +12,7 @@ export default class NestManager {
 
     async list(): Promise<Nest[]> {
         let current_page = (await this.client.call("nests"))
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {
@@ -37,18 +37,18 @@ export default class NestManager {
 
     async listEggs(nestId: number): Promise<Egg[]> {
         const eggs = (await this.client.call("nests/" + nestId + "/eggs")).data
-        let returner = []
-        for(var i = 0; i < eggs.length; i++) {
+        const returner = []
+        for(let i = 0; i < eggs.length; i++) {
             returner[i] = new Egg(eggs[i].attributes)
         }
-        //endpoint returns no pagination? bruh
+        // endpoint returns no pagination? bruh
         return returner
     }
 
     async getAllEggs(): Promise<Egg[]> {
         const nests = await this.list()
         const eggs = []
-        for(var i = 0; i < nests.length; i++) {
+        for(let i = 0; i < nests.length; i++) {
             const nestEggs = await this.listEggs(nests[i].id)
             eggs.push(...nestEggs)
         }
@@ -63,7 +63,7 @@ export default class NestManager {
 
     async getEgg2(eggId: number): Promise<Egg | null> {
         const eggs = await this.getAllEggs()
-        for(var i = 0; i < eggs.length; i ++) {
+        for(let i = 0; i < eggs.length; i ++) {
             if(eggs[i].id == eggId) {
                 return eggs[i]
             }

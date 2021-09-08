@@ -8,7 +8,7 @@ export default class Server {
     description: string | null
     status: string
     suspended: boolean
-    limits: { 
+    limits: {
         memory: number,
         swap: number,
         disk: number,
@@ -16,7 +16,7 @@ export default class Server {
         cpu: number
         threads: number | null
     }
-    feature_limits: { 
+    feature_limits: {
         databases: number
         allocations: number
         backups: number

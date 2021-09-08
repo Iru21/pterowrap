@@ -12,13 +12,13 @@ export default class ServerManager {
 
     constructor(_client: AdminInstance) {
         this.client = _client;
-        
+
         this.databases = new DatabaseManager(this.client)
     }
 
     async list(): Promise<Server[]> {
         let current_page = (await this.client.call("servers"))
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {
@@ -66,14 +66,14 @@ export default class ServerManager {
         } catch { return null }
     }
 
-    //ctrl + c goes brrrrrrr lmao
+    // ctrl + c goes brrrrrrr lmao
 
     async updateExternalID(id: number, external_id: any): Promise<Server | null> {
         const currentServerDetails = await this.get(id)
         if(!currentServerDetails) throw new Error("Invalid server id provided!")
         try {
             return new Server((await this.client.call(`servers/${id}/details`, 'PATCH', {
-                external_id: external_id,
+                external_id,
                 name: currentServerDetails.name,
                 user: currentServerDetails.user,
                 description: currentServerDetails.description
@@ -87,7 +87,7 @@ export default class ServerManager {
         try {
             return new Server((await this.client.call(`servers/${id}/details`, 'PATCH', {
                 external_id: currentServerDetails.external_id,
-                name: name,
+                name,
                 user: currentServerDetails.user,
                 description: currentServerDetails.description
             })))
@@ -101,7 +101,7 @@ export default class ServerManager {
             return new Server((await this.client.call(`servers/${id}/details`, 'PATCH', {
                 external_id: currentServerDetails.external_id,
                 name: currentServerDetails.name,
-                user: user,
+                user,
                 description: currentServerDetails.description
             })))
         } catch { return null }
@@ -115,7 +115,7 @@ export default class ServerManager {
                 external_id: currentServerDetails.external_id,
                 name: currentServerDetails.name,
                 user: currentServerDetails.user,
-                description: description
+                description
             })))
         } catch { return null }
     }
@@ -125,7 +125,7 @@ export default class ServerManager {
         if(!currentServerDetails) throw new Error("Invalid server id provided!")
         try {
             return new Server((await this.client.call(`servers/${id}/startup`, 'PATCH', {
-                startup: startup,
+                startup,
                 environment: currentServerDetails.container.environment,
                 egg: currentServerDetails.egg,
                 pack: currentServerDetails.pack,
@@ -141,7 +141,7 @@ export default class ServerManager {
         try {
             return new Server((await this.client.call(`servers/${id}/startup`, 'PATCH', {
                 startup: currentServerDetails.container.startup_command,
-                environment: environment,
+                environment,
                 egg: currentServerDetails.egg,
                 pack: currentServerDetails.pack,
                 image: currentServerDetails.container.image,
@@ -157,7 +157,7 @@ export default class ServerManager {
             return new Server((await this.client.call(`servers/${id}/startup`, 'PATCH', {
                 startup: currentServerDetails.container.startup_command,
                 environment: currentServerDetails.container.environment,
-                egg: egg,
+                egg,
                 pack: currentServerDetails.pack,
                 image: currentServerDetails.container.image,
                 skip_scripts: false
@@ -173,13 +173,13 @@ export default class ServerManager {
                 startup: currentServerDetails.container.startup_command,
                 environment: currentServerDetails.container.environment,
                 egg: currentServerDetails.egg,
-                pack: pack,
+                pack,
                 image: currentServerDetails.container.image,
                 skip_scripts: false
             })))
         } catch { return null }
     }
-    
+
     async updateImage(id: number, image: string): Promise<Server | null> {
         const currentServerDetails = await this.get(id)
         if(!currentServerDetails) throw new Error("Invalid server id provided!")
@@ -189,7 +189,7 @@ export default class ServerManager {
                 environment: currentServerDetails.container.environment,
                 egg: currentServerDetails.egg,
                 pack: currentServerDetails.pack,
-                image: image,
+                image,
                 skip_scripts: false
             })))
         } catch { return null }
@@ -205,7 +205,7 @@ export default class ServerManager {
                 egg: currentServerDetails.egg,
                 pack: currentServerDetails.pack,
                 image: currentServerDetails.container.image,
-                skip_scripts: skip_scripts
+                skip_scripts
             })))
         } catch { return null }
     }

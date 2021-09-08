@@ -13,7 +13,7 @@ export default class UserManager {
 
     async list(): Promise<User[]> {
         let current_page = (await this.client.call("users"))
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {
@@ -34,7 +34,7 @@ export default class UserManager {
         try {
             return new User((await this.client.call("users/" + id)).attributes)
         } catch { return null }
-        
+
     }
 
     async getByExternalId(id: any): Promise<User | null> {

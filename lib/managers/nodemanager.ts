@@ -13,7 +13,7 @@ export default class NodeManager {
 
     async list(): Promise<Node[]> {
         let current_page = (await this.client.call("nodes"))
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {
@@ -30,7 +30,7 @@ export default class NodeManager {
         return returner
     }
 
-    async get(id: Number): Promise<Node | null> {
+    async get(id: number): Promise<Node | null> {
         try {
             return new Node((await this.client.call("nodes/" + id)).attributes)
         } catch { return null }
@@ -46,7 +46,7 @@ export default class NodeManager {
         return returnedNode
     }
 
-    async edit(id: Number, params: NodeParams): Promise<Node | null> {
+    async edit(id: number, params: NodeParams): Promise<Node | null> {
         try {
             if(params.description == null) params.description = ""
             if(params.public == null) params.public = true
@@ -56,13 +56,13 @@ export default class NodeManager {
         } catch { return null }
     }
 
-    async delete(id: Number) {
+    async delete(id: number) {
         this.client.call("nodes/" + id, 'DELETE')
     }
 
-    async listAllocations(nodeId: Number): Promise<Allocation[]> {
+    async listAllocations(nodeId: number): Promise<Allocation[]> {
         let current_page = (await this.client.call("nodes/" + nodeId + "/allocations"))
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {
@@ -77,15 +77,15 @@ export default class NodeManager {
             }
         }
         return returner
-    } 
+    }
 
-    createAllocation(nodeId: Number, params: AllocationParams) {
+    createAllocation(nodeId: number, params: AllocationParams) {
         if(params.ports.length < 1) throw new Error("Insufficient port number to create allocation!")
         this.client.call("nodes/" + nodeId + "/allocations", "POST", params)
     }
 
-    deleteAllocation(nodeId: string, allocationId: Number) {
+    deleteAllocation(nodeId: string, allocationId: number) {
         this.client.call("nodes/" + nodeId + "/allocations/" + allocationId , 'DELETE')
     }
-    
+
 }

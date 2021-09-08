@@ -11,7 +11,7 @@ export default class LocationManager {
 
     async list(): Promise<Location[]> {
         let current_page = (await this.client.call("locations"))
-        let returner = []
+        const returner = []
         const pages = current_page.meta.pagination.total_pages
         let attIterator = 0
         for (let i = 0; i < pages; i++) {

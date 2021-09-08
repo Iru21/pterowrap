@@ -1,5 +1,5 @@
 export default class User {
-    
+
     id: number
     external_id: null | string
     uuid: string
@@ -29,5 +29,4 @@ export default class User {
         this.updated_at = raw.updated_at
         this.raw = raw
     }
-
 }

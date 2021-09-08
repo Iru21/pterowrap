@@ -89,7 +89,7 @@ export type ServerBuildParams = {
 }
 
 export type DatabaseParams = {
-    database: string //name
+    database: string // name
     remote: string
     host: string
 }

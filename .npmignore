@@ -2,3 +2,4 @@ lib/
 tsconfig.json
 wiki/
 .env
+tslint.json

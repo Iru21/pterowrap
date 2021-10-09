@@ -29,6 +29,11 @@ export default class ClientInstance {
 
 
     }
+
+    private sendPowerAction(id: number, action: PowerAction) {
+        this.call(`servers/${id}/power`, 'POST', {signal: action})
+    }
+
     call(endpoint : string = '', _method : method = 'GET', body = {}): any {
         return new Promise<any>(async (resolve : any, reject : any) => {
             try {
@@ -95,7 +100,19 @@ export default class ClientInstance {
         this.call(`servers/${id}/command`, 'POST', {command})
     }
 
-    sendPowerAction(id: number, action: PowerAction) {
-        this.call(`servers/${id}/power`, 'POST', {signal: action})
+    startServer(id: number) {
+        this.sendPowerAction(id, 'start')
+    }
+
+    stopServer(id: number) {
+        this.sendPowerAction(id, 'stop')
+    }
+
+    killServer(id: number) {
+        this.sendPowerAction(id, 'kill')
+    }
+
+    restartServer(id: number) {
+        this.sendPowerAction(id, 'restart')
     }
 }

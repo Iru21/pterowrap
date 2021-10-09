@@ -12,7 +12,8 @@ export default class DatabaseManager {
     }
 
     async list(server: number): Promise<Database[]> {
-        const databases = (await this.client.call(`servers/${server}/databases`))
+        const databases = (await this.client.call(`servers/${server}/databases`)).data
+        console.log(databases)
         const returner = []
         for(let i = 0; i < databases.length; i++) {
             returner[i] = new Database(databases[i].attributes)

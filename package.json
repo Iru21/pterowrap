@@ -1,6 +1,6 @@
 {
   "name": "pterowrap",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "homepage": "https://github.com/Iru21/pterowrap",
   "repository": "https://github.com/Iru21/pterowrap",
   "description": "A node.js wrapper for Pterodactyl API",

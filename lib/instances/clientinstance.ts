@@ -77,8 +77,8 @@ export default class ClientInstance {
             }
             let next_link = current_page.meta.pagination.links.next
             if(next_link) {
-                next_link = next_link.replace(this.url, "")
-                current_page = (await this.call())
+                next_link = next_link.replace(this.url, "").replace("client", "").replace(/\//g, "")
+                current_page = (await this.call(next_link))
             }
         }
         return returner

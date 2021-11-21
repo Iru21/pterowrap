@@ -12,6 +12,7 @@ export type requestParameters = {
         by: string
         reverse?: boolean
     }
+    per_page?: number
     other?: {
         key: string
         value: string | number | boolean
@@ -23,4 +24,20 @@ export type callOptions = {
     parameters?: requestParameters
     method?: method
     body?: object
+}
+
+export type createUserParams = {
+    email: string
+    username: string
+    first_name: string
+    last_name: string
+}
+
+export type updateUserParams = {
+    email: string
+    username: string
+    first_name: string
+    last_name: string
+    language: string
+    password: string
 }

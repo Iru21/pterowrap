@@ -2,7 +2,7 @@ import format_url from "../utils/formaturl"
 
 import fetch from "axios"
 import * as Types from "../types"
-import formatparams from "../utils/formatparams"
+import formatParams from "../utils/formatparams"
 
 export default abstract class Instance {
     private headers: { [key: string]: string }
@@ -23,7 +23,7 @@ export default abstract class Instance {
 
     call(options: Types.callOptions): Promise<any> {
         const { endpoint, parameters, method, body } = this.formatOptions(options)
-        const params = formatparams(parameters!)
+        const params = formatParams(parameters!)
         return new Promise<any>(async (resolve: any, reject: any) => {
             try {
                 const call = this.url + `/${this.instance_type}/` + endpoint + params

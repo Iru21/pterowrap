@@ -1,9 +1,9 @@
 import { Types } from ".."
 
-export default function formatparams(parameters: Types.requestParameters): string {
+export default function formatParams(parameters: Types.requestParameters): string {
     let result = ""
 
-    if (parameters.include || parameters.filters || parameters.sort || parameters.other) result += "?"
+    if (parameters.include || parameters.filters || parameters.sort || parameters.per_page || parameters.other) result += "?"
     if (parameters.include) {
         switch (typeof parameters.include) {
             case "string":
@@ -21,6 +21,7 @@ export default function formatparams(parameters: Types.requestParameters): strin
         }
     }
     if (parameters.sort) result += `${addAnd(result)}sort=${parameters.sort.reverse ? "-" : ""}${parameters.sort.by}`
+    if (parameters.per_page) result += `${addAnd(result)}per_page=${parameters.per_page}`
     if (parameters.other) {
         for (let i = 0; i < parameters.other.length; i++) result += `${addAnd(result)}${parameters.other[i].key}=${parameters.other[i].value}`
     }

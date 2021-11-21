@@ -3,3 +3,4 @@ tsconfig.json
 wiki/
 .env
 tslint.json
+package-lock.json

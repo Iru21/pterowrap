@@ -1,10 +1,10 @@
-# PteroWrap
+# PteroWrap v1.1.0 WIP
 
 [![npm version](https://badge.fury.io/js/pterowrap.svg)](https://badge.fury.io/js/pterowrap)
 
 A node.js wrapper for Pterodactyl API
 
-## Installation
+<!-- ## Installation
 
 ```sh
 npm install pterowrap
@@ -27,4 +27,4 @@ const client = new AdminInstance(url, key);
 
 ## Documentation
 
-### [Click Here](https://github.com/Iru21/pterowrap/wiki)
+### [Click Here](https://github.com/Iru21/pterowrap/wiki) -->

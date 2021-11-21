@@ -6,7 +6,10 @@ import { method, instance_type } from "../types"
 export default abstract class Instance {
     private headers: { [key: string]: string }
 
-    constructor(public url: string, private api_key: string, private _instance_type: instance_type) {
+    constructor(public url: string | undefined, private api_key: string | undefined, private _instance_type: instance_type) {
+        if (!url) throw new Error("Url is undefined!")
+        else if (!api_key) throw new Error("Api Key is undefined!")
+
         this.url = format_url(url)
         this.api_key = api_key
 

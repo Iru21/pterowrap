@@ -1,7 +1,7 @@
 import Instance from "./instance"
 
 export default class ApplicationInstance extends Instance {
-    constructor(url: string, api_key: string) {
+    constructor(url: string | undefined, api_key: string | undefined) {
         super(url, api_key, "application")
     }
 }

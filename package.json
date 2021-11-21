@@ -17,7 +17,8 @@
         "build-watch": "tsc -w",
         "run-watch": "nodemon ./lib/index.ts",
         "run-ts": "ts-node ./lib/index.ts",
-        "run": "node ."
+        "run": "node .",
+        "test": "ts-node ./lib/test.ts"
     },
     "author": "Iru21",
     "license": "GPL-3.0 License",

@@ -1,4 +1,5 @@
 lib/
+dist/test.*
 tsconfig.json
 wiki/
 .env

@@ -1,12 +1,13 @@
 import format_url from "../utils/formaturl"
 
 import fetch from "axios"
-import { method, instance_type } from "../types"
+import * as Types from "../types"
+import formatparams from "../utils/formatparams"
 
 export default abstract class Instance {
     private headers: { [key: string]: string }
 
-    constructor(public url: string | undefined, private api_key: string | undefined, private _instance_type: instance_type) {
+    constructor(public url: string | undefined, private api_key: string | undefined, private instance_type: Types.instanceType) {
         if (!url) throw new Error("Url is undefined!")
         else if (!api_key) throw new Error("Api Key is undefined!")
 
@@ -20,12 +21,14 @@ export default abstract class Instance {
         }
     }
 
-    call(endpoint: string = "", _method: method = "GET", body = {}): any {
+    call(options: Types.callOptions): Promise<any> {
+        const { endpoint, parameters, method, body } = this.formatOptions(options)
+        const params = formatparams(parameters!)
         return new Promise<any>(async (resolve: any, reject: any) => {
             try {
-                const call = this.url + `/${this._instance_type}/` + endpoint
+                const call = this.url + `/${this.instance_type}/` + endpoint + params
                 let return_data = null
-                switch (_method) {
+                switch (method) {
                     case "GET":
                         return_data = (await fetch.get(call, { headers: this.headers })).data
                         break
@@ -49,5 +52,14 @@ export default abstract class Instance {
                 reject(new Error(`${data.errors[0].status} | ${data.errors[0].code} | ${data.errors[0].detail}`))
             }
         })
+    }
+
+    private formatOptions(options: Types.callOptions): Types.callOptions {
+        let { endpoint, parameters, method, body } = options
+        if (!endpoint) endpoint = "/"
+        if (!parameters) parameters = {}
+        if (!method) method = "GET"
+        if (!body) body = {}
+        return { endpoint, parameters, method, body }
     }
 }

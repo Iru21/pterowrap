@@ -12,7 +12,7 @@
   ],
   "main": "./dist/index.js",
   "scripts": {
-    "clear-dist": "rmdir /s /q dist",
+    "clear-dist": "rm -rf dist",
     "build": "tsc",
     "watch": "tsc -w"
   },

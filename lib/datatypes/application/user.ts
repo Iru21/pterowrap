@@ -29,21 +29,19 @@ export default class User {
         this["2fa"] = data["2fa"]
         this.created_at = data.created_at
         this.updated_at = data.updated_at
-        this.raw = data
 
-        this._client = _client
+        this.raw = data
     }
 
     async update(params: Types.updateUserParams): Promise<User | null> {
         try {
-            const returnedUser = new User(this._client, (await this._client.call({ endpoint: "users/" + this.id, method: "PATCH", body: params })).attributes)
-            return returnedUser
+            return new User(this._client, (await this._client.call({ endpoint: "users/" + this.id, method: "PATCH", body: params })).attributes)
         } catch {
             return null
         }
     }
 
     async delete() {
-        this._client.call({ endpoint: "users/" + this.id, method: "DELETE" })
+        await this._client.call({ endpoint: "users/" + this.id, method: "DELETE" })
     }
 }

@@ -15,7 +15,7 @@ export default async function handlePagination(client: ApplicationInstance | Cli
         }
         let next_link = current_page.meta.pagination.links.next
         if (next_link) {
-            next_link = next_link.replace(client.url, "").replace("application", "").replace(/\//g, "")
+            next_link = next_link.replace(client.url, "").replace("application", "").replace("client", "").replace(/\//g, "")
             current_page = await client.call({ endpoint: next_link })
         }
     }

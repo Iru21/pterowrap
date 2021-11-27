@@ -13,6 +13,7 @@ export type requestParameters = {
         reverse?: boolean
     }
     per_page?: number
+    page?: number
     other?: {
         key: string
         value: string | number | boolean
@@ -40,4 +41,40 @@ export type updateUserParams = {
     last_name: string
     language: string
     password: string
+}
+
+export type createNodeParams = {
+    name: string
+    location_id: number
+    fqdn: string
+    scheme: "http" | "https"
+    memory: number
+    memory_overallocate: number
+    disk: number
+    disk_overallocate: number
+    upload_size: number
+    daemon_sftp: number
+    daemon_listen: number
+}
+
+export type updateNodeParams = {
+    name: string
+    description: string
+    location_id: number
+    fqdn: string
+    scheme: "http" | "https"
+    behind_proxy: boolean
+    maintenance_mode: boolean
+    memory: number
+    memory_overallocate: number
+    disk: number
+    disk_overallocate: number
+    upload_size: number
+    daemon_sftp: number
+    daemon_listen: number
+}
+
+export type createAllocationParams = {
+    ip: string
+    ports: number[] | string[]
 }

@@ -2,7 +2,7 @@ import ApplicationInstance from "../../instance/application"
 
 import handlePagination from "../../utils/handlepagination"
 import * as Types from "../../types"
-import Node from "../../datatypes/application/node"
+import Node from "../../structures/application/node"
 
 export default class NodeManager {
     constructor(private client: ApplicationInstance) {}

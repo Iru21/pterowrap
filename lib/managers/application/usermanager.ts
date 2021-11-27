@@ -1,6 +1,6 @@
 import ApplicationInstance from "../../instance/application"
 
-import User from "../../datatypes/application/user"
+import User from "../../structures/application/user"
 import handlePagination from "../../utils/handlepagination"
 import * as Types from "../../types"
 

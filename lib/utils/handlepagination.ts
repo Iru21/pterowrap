@@ -6,7 +6,10 @@ import * as Types from "../types"
 export default async function handlePagination(client: ApplicationInstance | ClientInstance, endpoint: string, options: Types.requestParameters, structure: any, additional_params?: any): Promise<any> {
     let current_page = await client.call({ endpoint, parameters: options })
     const returner = []
-    const pages = current_page.meta.pagination.total_pages
+    let pages = current_page.meta.pagination.total_pages
+    if (options.page) {
+        pages -= options.page - 1
+    }
     let attIterator = 0
     for (let i = 0; i < pages; i++) {
         for (let j = 0; j < current_page.data.length; j++) {

@@ -78,3 +78,13 @@ export type createAllocationParams = {
     ip: string
     ports: number[] | string[]
 }
+
+export type createLocationParams = {
+    short: string
+    long: string | null
+}
+
+export type updateLocationParams = {
+    short: string
+    long: string | null
+}

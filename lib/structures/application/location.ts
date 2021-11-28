@@ -1,6 +1,5 @@
 import * as Types from "../../types"
 import ApplicationInstance from "../../instance/application"
-import AllocationManager from "../../managers/application/allocationmanager"
 
 export default class Location {
     public id: number

@@ -13,12 +13,13 @@ export default class Allocation {
     public raw: any
 
     constructor(private _client: ApplicationInstance, data: any, private _node: Node) {
-        this.id = data.id
-        this.ip = data.ip
-        this.alias = data.alias
-        this.port = data.port
-        this.notes = data.notes
-        this.assigned = data.assigned
+        const attributes = data.attributes
+        this.id = attributes.id
+        this.ip = attributes.ip
+        this.alias = attributes.alias
+        this.port = attributes.port
+        this.notes = attributes.notes
+        this.assigned = attributes.assigned
 
         this.raw = data
     }

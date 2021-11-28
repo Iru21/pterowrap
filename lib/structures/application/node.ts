@@ -33,27 +33,28 @@ export default class Node {
     public raw: any
 
     constructor(private _client: ApplicationInstance, data: any) {
-        this.id = data.id
-        this.uuid = data.uuid
-        this.public = data.public
-        this.name = data.name
-        this.description = data.description
-        this.location_id = data.location_id
-        this.fqdn = data.fqdn
-        this.scheme = data.scheme
-        this.behind_proxy = data.behind_proxy
-        this.maintanance_mode = data.maintanance_mode
-        this.memory = data.memory
-        this.memory_overallocate = data.memory_overallocate
-        this.disk = data.disk
-        this.disk_overallocate = data.disk_overallocate
-        this.upload_size = data.upload_size
-        this.daemon_listen = data.daemon_listen
-        this.daemon_sftp = data.daemon_sftp
-        this.daemon_base = data.daemon_base
-        this.created_at = data.created_at
-        this.updated_at = data.updated_at
-        this.allocated_resources = data.allocated_resources
+        const attributes = data.attributes
+        this.id = attributes.id
+        this.uuid = attributes.uuid
+        this.public = attributes.public
+        this.name = attributes.name
+        this.description = attributes.description
+        this.location_id = attributes.location_id
+        this.fqdn = attributes.fqdn
+        this.scheme = attributes.scheme
+        this.behind_proxy = attributes.behind_proxy
+        this.maintanance_mode = attributes.maintanance_mode
+        this.memory = attributes.memory
+        this.memory_overallocate = attributes.memory_overallocate
+        this.disk = attributes.disk
+        this.disk_overallocate = attributes.disk_overallocate
+        this.upload_size = attributes.upload_size
+        this.daemon_listen = attributes.daemon_listen
+        this.daemon_sftp = attributes.daemon_sftp
+        this.daemon_base = attributes.daemon_base
+        this.created_at = attributes.created_at
+        this.updated_at = attributes.updated_at
+        this.allocated_resources = attributes.allocated_resources
 
         this.raw = data
 
@@ -70,7 +71,7 @@ export default class Node {
 
     async update(params: Types.updateNodeParams): Promise<Node | null> {
         try {
-            return new Node(this._client, (await this._client.call({ endpoint: "nodes/" + this.id, method: "PATCH", body: params })).attributes)
+            return new Node(this._client, await this._client.call({ endpoint: "nodes/" + this.id, method: "PATCH", body: params }))
         } catch {
             return null
         }

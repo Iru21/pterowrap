@@ -13,13 +13,13 @@ export default class NodeManager {
 
     async get(id: number, options: Types.requestParameters = {}): Promise<Node | null> {
         try {
-            return new Node(this.client, (await this.client.call({ endpoint: "nodes/" + id, parameters: options })).attributes)
+            return new Node(this.client, await this.client.call({ endpoint: "nodes/" + id, parameters: options }))
         } catch {
             return null
         }
     }
 
     async create(params: Types.createNodeParams): Promise<Node> {
-        return new Node(this.client, (await this.client.call({ endpoint: "nodes", method: "POST", body: params })).attributes)
+        return new Node(this.client, await this.client.call({ endpoint: "nodes", method: "POST", body: params }))
     }
 }

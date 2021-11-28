@@ -17,25 +17,26 @@ export default class User {
     public raw: any
 
     constructor(private _client: ApplicationInstance, data: any) {
-        this.id = data.id
-        this.external_id = data.external_id
-        this.uuid = data.uuid
-        this.username = data.username
-        this.email = data.email
-        this.first_name = data.first_name
-        this.last_name = data.last_name
-        this.language = data.language
-        this.root_admin = data.root_admin
-        this["2fa"] = data["2fa"]
-        this.created_at = data.created_at
-        this.updated_at = data.updated_at
+        const attributes = data.attributes
+        this.id = attributes.id
+        this.external_id = attributes.external_id
+        this.uuid = attributes.uuid
+        this.username = attributes.username
+        this.email = attributes.email
+        this.first_name = attributes.first_name
+        this.last_name = attributes.last_name
+        this.language = attributes.language
+        this.root_admin = attributes.root_admin
+        this["2fa"] = attributes["2fa"]
+        this.created_at = attributes.created_at
+        this.updated_at = attributes.updated_at
 
         this.raw = data
     }
 
     async update(params: Types.updateUserParams): Promise<User | null> {
         try {
-            return new User(this._client, (await this._client.call({ endpoint: "users/" + this.id, method: "PATCH", body: params })).attributes)
+            return new User(this._client, await this._client.call({ endpoint: "users/" + this.id, method: "PATCH", body: params }))
         } catch {
             return null
         }

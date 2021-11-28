@@ -13,7 +13,7 @@ export default async function handlePagination(client: ApplicationInstance | Cli
     let attIterator = 0
     for (let i = 0; i < pages; i++) {
         for (let j = 0; j < current_page.data.length; j++) {
-            returner[attIterator] = additional_params ? new structure(client, current_page.data[j].attributes, additional_params) : new structure(client, current_page.data[j].attributes)
+            returner[attIterator] = additional_params ? new structure(client, current_page.data[j], additional_params) : new structure(client, current_page.data[j])
             attIterator++
         }
         let next_link = current_page.meta.pagination.links.next

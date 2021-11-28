@@ -11,18 +11,19 @@ export default class Location {
     public raw: any
 
     constructor(private _client: ApplicationInstance, data: any) {
-        this.id = data.id
-        this.short = data.short
-        this.long = data.long
-        this.updated_at = data.updated_at
-        this.created_at = data.created_at
+        const attributes = data.attributes
+        this.id = attributes.id
+        this.short = attributes.short
+        this.long = attributes.long
+        this.updated_at = attributes.updated_at
+        this.created_at = attributes.created_at
 
         this.raw = data
     }
 
     async update(params: Types.updateLocationParams): Promise<Location | null> {
         try {
-            return new Location(this._client, (await this._client.call({ endpoint: "locations/" + this.id, method: "PATCH", body: params })).attributes)
+            return new Location(this._client, await this._client.call({ endpoint: "locations/" + this.id, method: "PATCH", body: params }))
         } catch {
             return null
         }

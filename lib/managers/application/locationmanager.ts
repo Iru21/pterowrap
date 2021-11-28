@@ -13,13 +13,13 @@ export default class LocationManager {
 
     async get(id: number, options: Types.requestParameters = {}): Promise<Location | null> {
         try {
-            return new Location(this.client, (await this.client.call({ endpoint: "locations/" + id, parameters: options })).attributes)
+            return new Location(this.client, await this.client.call({ endpoint: "locations/" + id, parameters: options }))
         } catch {
             return null
         }
     }
 
     async create(params: Types.createLocationParams): Promise<Location> {
-        return new Location(this.client, (await this.client.call({ endpoint: "locations", method: "POST", body: params })).attributes)
+        return new Location(this.client, await this.client.call({ endpoint: "locations", method: "POST", body: params }))
     }
 }

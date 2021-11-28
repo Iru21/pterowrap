@@ -1,6 +1,6 @@
 import format_url from "../utils/formaturl"
 
-import fetch from "axios"
+import fetch, { AxiosStatic } from "axios"
 import * as Types from "../types"
 import formatParams from "../utils/formatparams"
 
@@ -28,23 +28,33 @@ export default abstract class Instance {
             try {
                 const call = this.url + `/${this.instance_type}/` + endpoint + params
                 let return_data = null
-                switch (method) {
-                    case "GET":
-                        return_data = (await fetch.get(call, { headers: this.headers })).data
-                        break
-                    case "POST":
-                        return_data = (await fetch.post(call, body, { headers: this.headers })).data
-                        break
-                    case "PATCH":
-                        return_data = (await fetch.patch(call, body, { headers: this.headers })).data
-                        break
-                    case "PUT":
-                        return_data = (await fetch.put(call, body, { headers: this.headers })).data
-                        break
-                    case "DELETE":
-                        return_data = (await fetch.delete(call, { headers: this.headers })).data
-                        break
-                }
+
+                // just got a horrible idea
+
+                // I hate javascript and the fact that this works
+                const m = method?.toLowerCase()
+                const f = fetch[m as "get" | "post" | "put" | "patch" | "delete"]
+                if (m === "get" || m === "delete") return_data = (await f(call, { headers: this.headers })).data
+                else return_data = (await f(call, body, { headers: this.headers })).data
+
+                // switch (method) {
+                //     case "GET":
+                //         return_data = (await fetch.get(call, { headers: this.headers })).data
+                //         break
+                //     case "POST":
+                //         return_data = (await fetch.post(call, body, { headers: this.headers })).data
+                //         break
+                //     case "PATCH":
+                //         return_data = (await fetch.patch(call, body, { headers: this.headers })).data
+                //         break
+                //     case "PUT":
+                //         return_data = (await fetch.put(call, body, { headers: this.headers })).data
+                //         break
+                //     case "DELETE":
+                //         return_data = (await fetch.delete(call, { headers: this.headers })).data
+                //         break
+                // }
+
                 resolve(return_data)
             } catch (err: any) {
                 const data = err.response.data
@@ -60,6 +70,7 @@ export default abstract class Instance {
         if (!parameters) parameters = {}
         if (!method) method = "GET"
         if (!body) body = {}
+
         return { endpoint, parameters, method, body }
     }
 }

@@ -35,14 +35,22 @@ export default class User {
     }
 
     async update(params: Types.updateUserParams): Promise<User | null> {
-        try {
-            return new User(this._client, await this._client.call({ endpoint: "users/" + this.id, method: "PATCH", body: params }))
-        } catch {
-            return null
-        }
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new User(this._client, await this._client.call({ endpoint: "users/" + this.id, method: "PATCH", body: params })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     async delete() {
-        await this._client.call({ endpoint: "users/" + this.id, method: "DELETE" })
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: "users/" + this.id, method: "DELETE" }))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

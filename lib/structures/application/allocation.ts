@@ -25,6 +25,12 @@ export default class Allocation {
     }
 
     async delete() {
-        await this._client.call({ endpoint: `nodes/${this._node.id}/allocations/${this.id}`, method: "DELETE" })
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: `nodes/${this._node.id}/allocations/${this.id}`, method: "DELETE" }))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

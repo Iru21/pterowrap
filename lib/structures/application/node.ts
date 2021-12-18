@@ -61,23 +61,33 @@ export default class Node {
         this.allocations = new AllocationManager(this._client, this)
     }
 
-    async retrieveWingsConfiguration(): Promise<object | null> {
-        try {
-            return await this._client.call({ endpoint: `nodes/${this.id}/configuration` })
-        } catch {
-            return null
-        }
+    async retrieveWingsConfiguration(): Promise<object> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: `nodes/${this.id}/configuration` }))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
-    async update(params: Types.updateNodeParams): Promise<Node | null> {
-        try {
-            return new Node(this._client, await this._client.call({ endpoint: "nodes/" + this.id, method: "PATCH", body: params }))
-        } catch {
-            return null
-        }
+    async update(params: Types.updateNodeParams): Promise<Node> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new Node(this._client, await this._client.call({ endpoint: "nodes/" + this.id, method: "PATCH", body: params })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     async delete() {
-        await this._client.call({ endpoint: "nodes/" + this.id, method: "DELETE" })
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: "nodes/" + this.id, method: "DELETE" }))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

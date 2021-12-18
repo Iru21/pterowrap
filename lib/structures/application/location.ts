@@ -21,15 +21,23 @@ export default class Location {
         this.raw = data
     }
 
-    async update(params: Types.updateLocationParams): Promise<Location | null> {
-        try {
-            return new Location(this._client, await this._client.call({ endpoint: "locations/" + this.id, method: "PATCH", body: params }))
-        } catch {
-            return null
-        }
+    async update(params: Types.updateLocationParams): Promise<Location> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new Location(this._client, await this._client.call({ endpoint: "locations/" + this.id, method: "PATCH", body: params })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     async delete() {
-        await this._client.call({ endpoint: "locations/" + this.id, method: "DELETE" })
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: "locations/" + this.id, method: "DELETE" }))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

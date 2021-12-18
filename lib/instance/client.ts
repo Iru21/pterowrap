@@ -13,7 +13,7 @@ export default class ClientInstance extends Instance {
     retrievePermissions() {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this.call({ endpoint: "permissions" }))
+                resolve((await this.call({ endpoint: "permissions" })).attributes.permissions)
             } catch (e) {
                 reject(e)
             }

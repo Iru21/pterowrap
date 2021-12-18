@@ -7,7 +7,7 @@ import Node from "../../structures/application/node"
 export default class NodeManager {
     constructor(private client: ApplicationInstance) {}
 
-    async list(options: Types.requestParameters = {}): Promise<Node[]> {
+    list(options: Types.requestParameters = {}): Promise<Node[]> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(await handlePagination(this.client, "nodes", options, Node))
@@ -17,7 +17,7 @@ export default class NodeManager {
         })
     }
 
-    async get(id: number, options: Types.requestParameters = {}): Promise<Node> {
+    get(id: number, options: Types.requestParameters = {}): Promise<Node> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Node(this.client, await this.client.call({ endpoint: "nodes/" + id, parameters: options })))
@@ -27,7 +27,7 @@ export default class NodeManager {
         })
     }
 
-    async create(params: Types.createNodeParams): Promise<Node> {
+    create(params: Types.createNodeParams): Promise<Node> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Node(this.client, await this.client.call({ endpoint: "nodes", method: "POST", body: params })))

@@ -8,7 +8,7 @@ import Nest from "../../structures/application/nest"
 export default class EggManager {
     constructor(private client: ApplicationInstance, private nest: Nest) {}
 
-    async list(options: Types.requestParameters = {}): Promise<Egg[]> {
+    list(options: Types.requestParameters = {}): Promise<Egg[]> {
         return new Promise(async (resolve, reject) => {
             try {
                 const list = await this.client.call({ endpoint: `nests/${this.nest.id}/eggs`, parameters: options })
@@ -23,7 +23,7 @@ export default class EggManager {
         })
     }
 
-    async get(id: number, options: Types.requestParameters = {}): Promise<Egg> {
+    get(id: number, options: Types.requestParameters = {}): Promise<Egg> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Egg(this.client, await this.client.call({ endpoint: `nests/${this.nest.id}/eggs/${id}`, parameters: options })))

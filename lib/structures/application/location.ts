@@ -21,7 +21,7 @@ export default class Location {
         this.raw = data
     }
 
-    async update(params: Types.updateLocationParams): Promise<Location> {
+    update(params: Types.updateLocationParams): Promise<Location> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Location(this._client, await this._client.call({ endpoint: "locations/" + this.id, method: "PATCH", body: params })))
@@ -31,7 +31,7 @@ export default class Location {
         })
     }
 
-    async delete() {
+    delete() {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(await this._client.call({ endpoint: "locations/" + this.id, method: "DELETE" }))

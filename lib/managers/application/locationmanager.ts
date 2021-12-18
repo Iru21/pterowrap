@@ -7,7 +7,7 @@ import Location from "../../structures/application/location"
 export default class LocationManager {
     constructor(private client: ApplicationInstance) {}
 
-    async list(options: Types.requestParameters = {}): Promise<Location[]> {
+    list(options: Types.requestParameters = {}): Promise<Location[]> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(await handlePagination(this.client, "locations", options, Location))
@@ -17,7 +17,7 @@ export default class LocationManager {
         })
     }
 
-    async get(id: number, options: Types.requestParameters = {}): Promise<Location> {
+    get(id: number, options: Types.requestParameters = {}): Promise<Location> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Location(this.client, await this.client.call({ endpoint: "locations/" + id, parameters: options })))
@@ -27,7 +27,7 @@ export default class LocationManager {
         })
     }
 
-    async create(params: Types.createLocationParams): Promise<Location> {
+    create(params: Types.createLocationParams): Promise<Location> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Location(this.client, await this.client.call({ endpoint: "locations", method: "POST", body: params })))

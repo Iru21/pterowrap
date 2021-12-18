@@ -31,7 +31,7 @@ export default class UserManager {
         })
     }
 
-    async create(params: Types.createUserParams): Promise<User> {
+    create(params: Types.createUserParams): Promise<User> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new User(this.client, await this.client.call({ endpoint: "users", method: "POST", body: params })))

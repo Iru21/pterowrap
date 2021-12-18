@@ -61,7 +61,7 @@ export default class Node {
         this.allocations = new AllocationManager(this._client, this)
     }
 
-    async retrieveWingsConfiguration(): Promise<object> {
+    retrieveWingsConfiguration(): Promise<object> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(await this._client.call({ endpoint: `nodes/${this.id}/configuration` }))
@@ -71,7 +71,7 @@ export default class Node {
         })
     }
 
-    async update(params: Types.updateNodeParams): Promise<Node> {
+    update(params: Types.updateNodeParams): Promise<Node> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Node(this._client, await this._client.call({ endpoint: "nodes/" + this.id, method: "PATCH", body: params })))
@@ -81,7 +81,7 @@ export default class Node {
         })
     }
 
-    async delete() {
+    delete() {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(await this._client.call({ endpoint: "nodes/" + this.id, method: "DELETE" }))

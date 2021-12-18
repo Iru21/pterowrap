@@ -34,7 +34,7 @@ export default class User {
         this.raw = data
     }
 
-    async update(params: Types.updateUserParams): Promise<User | null> {
+    update(params: Types.updateUserParams): Promise<User | null> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new User(this._client, await this._client.call({ endpoint: "users/" + this.id, method: "PATCH", body: params })))
@@ -44,7 +44,7 @@ export default class User {
         })
     }
 
-    async delete() {
+    delete() {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(await this._client.call({ endpoint: "users/" + this.id, method: "DELETE" }))

@@ -11,23 +11,33 @@ export default class UserManager {
         return await handlePagination(this.client, "users", options, User)
     }
 
-    async get(id: number, options: Types.requestParameters = {}): Promise<User | null> {
-        try {
-            return new User(this.client, await this.client.call({ endpoint: "users/" + id, parameters: options }))
-        } catch {
-            return null
-        }
+    get(id: number, options: Types.requestParameters = {}): Promise<User> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new User(this.client, await this.client.call({ endpoint: "users/" + id, parameters: options })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
-    async getByExternalId(id: any, options: Types.requestParameters = {}): Promise<User | null> {
-        try {
-            return new User(this.client, await this.client.call({ endpoint: "users/external/" + id.toString(), parameters: options }))
-        } catch {
-            return null
-        }
+    getByExternalId(id: any, options: Types.requestParameters = {}): Promise<User> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new User(this.client, await this.client.call({ endpoint: "users/external/" + id.toString(), parameters: options })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     async create(params: Types.createUserParams): Promise<User> {
-        return new User(this.client, await this.client.call({ endpoint: "users", method: "POST", body: params }))
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new User(this.client, await this.client.call({ endpoint: "users", method: "POST", body: params })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

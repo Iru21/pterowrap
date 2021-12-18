@@ -9,10 +9,22 @@ export default class AllocationManager {
     constructor(private client: ApplicationInstance, public node: Node) {}
 
     async list(options: Types.requestParameters = {}): Promise<Allocation[]> {
-        return await handlePagination(this.client, `nodes/${this.node.id}/allocations`, options, Allocation, this.node)
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await handlePagination(this.client, `nodes/${this.node.id}/allocations`, options, Allocation, this.node))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     async create(params: Types.createAllocationParams) {
-        await this.client.call({ endpoint: `nodes/${this.node.id}/allocations`, method: "POST", body: params })
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this.client.call({ endpoint: `nodes/${this.node.id}/allocations`, method: "POST", body: params }))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

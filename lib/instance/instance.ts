@@ -28,38 +28,14 @@ export default abstract class Instance {
             try {
                 const call = this.url + `/${this.instance_type}/` + endpoint + params
                 let return_data = null
-
-                // just got a horrible idea
-
                 // I hate javascript and the fact that this works
                 const m = method?.toLowerCase()
                 const f = fetch[m as "get" | "post" | "put" | "patch" | "delete"]
                 if (m === "get" || m === "delete") return_data = (await f(call, { headers: this.headers })).data
                 else return_data = (await f(call, body, { headers: this.headers })).data
-
-                // switch (method) {
-                //     case "GET":
-                //         return_data = (await fetch.get(call, { headers: this.headers })).data
-                //         break
-                //     case "POST":
-                //         return_data = (await fetch.post(call, body, { headers: this.headers })).data
-                //         break
-                //     case "PATCH":
-                //         return_data = (await fetch.patch(call, body, { headers: this.headers })).data
-                //         break
-                //     case "PUT":
-                //         return_data = (await fetch.put(call, body, { headers: this.headers })).data
-                //         break
-                //     case "DELETE":
-                //         return_data = (await fetch.delete(call, { headers: this.headers })).data
-                //         break
-                // }
-
                 resolve(return_data)
             } catch (err: any) {
-                const data = err.response.data
-                console.log(data.errors.length == 1 ? data.errors[0] : data.errors)
-                reject(new Error(`${data.errors[0].status} | ${data.errors[0].code} | ${data.errors[0].detail}`))
+                reject(err.response.data.errors)
             }
         })
     }

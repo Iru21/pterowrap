@@ -8,18 +8,32 @@ export default class NodeManager {
     constructor(private client: ApplicationInstance) {}
 
     async list(options: Types.requestParameters = {}): Promise<Node[]> {
-        return await handlePagination(this.client, "nodes", options, Node)
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await handlePagination(this.client, "nodes", options, Node))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
-    async get(id: number, options: Types.requestParameters = {}): Promise<Node | null> {
-        try {
-            return new Node(this.client, await this.client.call({ endpoint: "nodes/" + id, parameters: options }))
-        } catch {
-            return null
-        }
+    async get(id: number, options: Types.requestParameters = {}): Promise<Node> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new Node(this.client, await this.client.call({ endpoint: "nodes/" + id, parameters: options })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     async create(params: Types.createNodeParams): Promise<Node> {
-        return new Node(this.client, await this.client.call({ endpoint: "nodes", method: "POST", body: params }))
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new Node(this.client, await this.client.call({ endpoint: "nodes", method: "POST", body: params })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

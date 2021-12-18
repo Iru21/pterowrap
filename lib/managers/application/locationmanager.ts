@@ -8,18 +8,32 @@ export default class LocationManager {
     constructor(private client: ApplicationInstance) {}
 
     async list(options: Types.requestParameters = {}): Promise<Location[]> {
-        return await handlePagination(this.client, "locations", options, Location)
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await handlePagination(this.client, "locations", options, Location))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
-    async get(id: number, options: Types.requestParameters = {}): Promise<Location | null> {
-        try {
-            return new Location(this.client, await this.client.call({ endpoint: "locations/" + id, parameters: options }))
-        } catch {
-            return null
-        }
+    async get(id: number, options: Types.requestParameters = {}): Promise<Location> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new Location(this.client, await this.client.call({ endpoint: "locations/" + id, parameters: options })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     async create(params: Types.createLocationParams): Promise<Location> {
-        return new Location(this.client, await this.client.call({ endpoint: "locations", method: "POST", body: params }))
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(new Location(this.client, await this.client.call({ endpoint: "locations", method: "POST", body: params })))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 }

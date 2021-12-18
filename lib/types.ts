@@ -151,3 +151,22 @@ export type createDatabaseParams = {
     remote: string
     host: string
 }
+
+export type websocketCredentials = {
+    token: string
+    socket: string
+}
+
+export type resourceUsage = {
+    current_state: string
+    is_suspended: boolean
+    resources: {
+        memory_bytes: number
+        cpu_absolute: number
+        disk_bytes: number
+        netword_rx_bytes: number
+        network_tx_bytes: number
+    }
+}
+
+export type powerAction = "start" | "stop" | "restart" | "kill"

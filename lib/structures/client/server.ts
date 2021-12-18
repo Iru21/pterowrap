@@ -1,0 +1,94 @@
+import * as Types from "../../types"
+import ClientInstance from "../../instance/client"
+
+export default class Server {
+    public server_owner: boolean
+    public identifier: number
+    public uuid: string
+    public name: string
+    public node: number
+    public sftp_details: {
+        ip: string
+        port: number
+    }
+    public description: string
+    public is_suspended: boolean
+    public is_installing: boolean
+    public limits: {
+        memory: number
+        disk: number
+        swap: number
+        cpu: number
+        io: number
+        threads: number | null
+        oom_disabled: boolean
+    }
+    public feature_limits: {
+        databases: number
+        allocations: number
+        backups: number
+    }
+    public relationships: {
+        [key: string]: any
+    }
+
+    public raw: any
+
+    constructor(private _client: ClientInstance, data: any) {
+        const attributes = data.attributes
+        this.server_owner = attributes.server_owner
+        this.identifier = attributes.identifier
+        this.uuid = attributes.uuid
+        this.name = attributes.name
+        this.node = attributes.node
+        this.sftp_details = attributes.sftp_details
+        this.description = attributes.description
+        this.is_suspended = attributes.is_suspended
+        this.is_installing = attributes.is_installing
+        this.limits = attributes.limits
+        this.feature_limits = attributes.feature_limits
+        this.relationships = attributes.relationships ? attributes.relationships : {}
+
+        this.raw = attributes
+    }
+
+    retrieveWebsocketCredentials(): Promise<Types.websocketCredentials> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve((await this._client.call({ endpoint: `servers/${this.identifier}/websocket` })).data)
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+
+    retireveResourceUsage(): Promise<Types.resourceUsage> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve((await this._client.call({ endpoint: `servers/${this.identifier}/resources` })).attributes)
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+
+    sendCommand(command: string) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: `servers/${this.identifier}/command`, method: "POST", body: { command } }))
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+
+    sendPowerAction(action: Types.powerAction) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: `servers/${this.identifier}/power`, method: "POST", body: { action } }))
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+}

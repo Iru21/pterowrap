@@ -88,3 +88,66 @@ export type updateLocationParams = {
     short: string
     long: string | null
 }
+
+export type updateServerDetailsParams = {
+    name: string
+    user: number
+    external_id?: string
+    description?: string
+}
+
+export type updateServerBuildParams = {
+    allocation: number
+    memory: number
+    swap: number
+    io: number
+    cpu: number
+    disk: number
+    threads: number | null
+    feature_limits: {
+        databases: number
+        backups: number
+        allocations?: number
+    }
+}
+
+export type updateServerStartupParams = {
+    startup: string
+    environment: {
+        [key: string]: any
+    }
+    egg: number
+    image: string
+    skip_scripts: boolean
+}
+
+export type createServerParams = {
+    name: string
+    user: number
+    egg: number
+    docker_image: string
+    startup: string
+    environment: {
+        [key: string]: any
+    }
+    limits: {
+        memory: number
+        swap: number
+        io: number
+        cpu: number
+        disk: number
+    }
+    feature_limits: {
+        databases: number
+        backups: number
+    }
+    allocation: {
+        default: number
+    }
+}
+
+export type createDatabaseParams = {
+    database: string
+    remote: string
+    host: string
+}

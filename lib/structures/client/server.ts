@@ -1,5 +1,6 @@
 import * as Types from "../../types"
 import ClientInstance from "../../instance/client"
+import DatabaseManager from "../../managers/client/databasemanager"
 
 export default class Server {
     public server_owner: boolean
@@ -35,6 +36,8 @@ export default class Server {
         [key: string]: any
     }
 
+    public databases: DatabaseManager
+
     public raw: any
 
     constructor(private _client: ClientInstance, data: any) {
@@ -56,6 +59,8 @@ export default class Server {
         this.relationships = attributes.relationships ? attributes.relationships : {}
 
         this.raw = attributes
+
+        this.databases = new DatabaseManager(this._client, this)
     }
 
     retrieveWebsocketCredentials(): Promise<Types.websocketCredentials> {

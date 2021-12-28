@@ -33,7 +33,7 @@ export default class DatabaseManager {
         })
     }
 
-    create(params: Types.createDatabaseParams): Promise<Database> {
+    create(params: Types.createApplicationDatabaseParams): Promise<Database> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Database(this.client, await this.client.call({ endpoint: `servers/${this._parentServer.id}/databases`, method: "POST", body: params }), this._parentServer))

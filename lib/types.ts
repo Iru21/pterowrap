@@ -146,7 +146,7 @@ export type createServerParams = {
     }
 }
 
-export type createDatabaseParams = {
+export type createApplicationDatabaseParams = {
     database: string
     remote: string
     host: string
@@ -170,3 +170,8 @@ export type resourceUsage = {
 }
 
 export type powerAction = "start" | "stop" | "restart" | "kill"
+
+export type createClientDatabaseParams = {
+    database: string
+    remote: string
+}

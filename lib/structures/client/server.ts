@@ -4,6 +4,7 @@ import ClientInstance from "../../instance/client"
 export default class Server {
     public server_owner: boolean
     public identifier: number
+    public internal_id: number
     public uuid: string
     public name: string
     public node: number
@@ -12,8 +13,10 @@ export default class Server {
         port: number
     }
     public description: string
+    public invocation: string
     public is_suspended: boolean
     public is_installing: boolean
+    public is_transferring: boolean
     public limits: {
         memory: number
         disk: number
@@ -38,13 +41,16 @@ export default class Server {
         const attributes = data.attributes
         this.server_owner = attributes.server_owner
         this.identifier = attributes.identifier
+        this.internal_id = attributes.internal_id
         this.uuid = attributes.uuid
         this.name = attributes.name
+        this.description = attributes.description
         this.node = attributes.node
         this.sftp_details = attributes.sftp_details
-        this.description = attributes.description
+        this.invocation = attributes.invocation
         this.is_suspended = attributes.is_suspended
         this.is_installing = attributes.is_installing
+        this.is_transferring = attributes.is_transferring
         this.limits = attributes.limits
         this.feature_limits = attributes.feature_limits
         this.relationships = attributes.relationships ? attributes.relationships : {}

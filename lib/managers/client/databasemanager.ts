@@ -1,6 +1,4 @@
 import ClientInstance from "../../instance/client"
-
-import handlePagination from "../../utils/handlepagination"
 import * as Types from "../../types"
 import Server from "../../structures/client/server"
 import Database from "../../structures/client/database"

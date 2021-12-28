@@ -16,7 +16,7 @@ export type requestParameters = {
     page?: number
     other?: {
         key: string
-        value: string | number | boolean
+        value: any
     }[]
 }
 
@@ -24,7 +24,7 @@ export type callOptions = {
     endpoint?: string
     parameters?: requestParameters
     method?: method
-    body?: object
+    body?: any
 }
 
 export type createUserParams = {

@@ -201,3 +201,27 @@ export type createClientDatabaseParams = {
     database: string
     remote: string
 }
+
+export type createScheduleParams = {
+    name: string
+    is_active: boolean
+    minute: string
+    hour: string
+    day_of_week: string
+    day_of_month: string
+}
+
+export type updateScheduleParams = {
+    name: string
+    is_active?: boolean
+    minute: string
+    hour: string
+    day_of_week: string
+    day_of_month: string
+}
+
+export type createOrUpdateTaskParams = {
+    action: "command" | "power" | "backup"
+    payload: string
+    time_offset: number
+}

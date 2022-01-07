@@ -28,23 +28,32 @@ export type callOptions = {
 }
 
 export type createUserParams = {
+    external_id?: string
     email: string
     username: string
     first_name: string
     last_name: string
+    password?: string
+    root_admin?: boolean
+    language?: string
 }
 
 export type updateUserParams = {
+    external_id?: string
     email: string
     username: string
     first_name: string
     last_name: string
     language: string
     password: string
+    root_admin?: boolean
 }
 
 export type createNodeParams = {
     name: string
+    description?: string
+    public?: boolean
+    behind_proxy?: boolean
     location_id: number
     fqdn: string
     scheme: "http" | "https"
@@ -53,14 +62,17 @@ export type createNodeParams = {
     disk: number
     disk_overallocate: number
     upload_size: number
+    daemon_base?: string
     daemon_sftp: number
     daemon_listen: number
+    maintenance_mode?: boolean
 }
 
 export type updateNodeParams = {
     name: string
-    description: string
+    description?: string
     location_id: number
+    public?: boolean
     fqdn: string
     scheme: "http" | "https"
     behind_proxy: boolean
@@ -70,23 +82,25 @@ export type updateNodeParams = {
     disk: number
     disk_overallocate: number
     upload_size: number
+    daemon_base?: string
     daemon_sftp: number
     daemon_listen: number
 }
 
 export type createAllocationParams = {
     ip: string
+    alias?: string
     ports: number[] | string[]
 }
 
 export type createLocationParams = {
     short: string
-    long: string | null
+    long: string
 }
 
 export type updateLocationParams = {
     short: string
-    long: string | null
+    long: string
 }
 
 export type updateServerDetailsParams = {
@@ -109,6 +123,7 @@ export type updateServerBuildParams = {
         backups: number
         allocations?: number
     }
+    oom_disabled?: boolean
 }
 
 export type updateServerStartupParams = {
@@ -122,10 +137,12 @@ export type updateServerStartupParams = {
 }
 
 export type createServerParams = {
+    external_id?: string
     name: string
+    description?: string
     user: number
     egg: number
-    docker_image: string
+    docker_image?: string
     startup: string
     environment: {
         [key: string]: any
@@ -141,9 +158,18 @@ export type createServerParams = {
         databases: number
         backups: number
     }
-    allocation: {
-        default: number
+    allocation?: {
+        default?: number
+        additional?: number[]
     }
+    deploy?: {
+        locations: number[]
+        deducared_ip: boolean
+        port_range: string
+    }
+    start_on_completion?: boolean
+    skip_scripts?: boolean
+    oom_disabled?: boolean
 }
 
 export type createApplicationDatabaseParams = {

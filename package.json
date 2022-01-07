@@ -14,10 +14,7 @@
     "scripts": {
         "clear-dist": "rm -rf dist",
         "build": "tsc",
-        "build-watch": "tsc -w",
-        "run-watch": "nodemon ./lib/index.ts",
-        "run-ts": "ts-node ./lib/index.ts",
-        "run": "node .",
+        "publish": "npm run clear-dist && npm run build && npm publish",
         "test": "ts-node ./lib/test.ts"
     },
     "author": "Iru21",

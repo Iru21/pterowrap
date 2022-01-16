@@ -225,3 +225,52 @@ export type createOrUpdateTaskParams = {
     payload: string
     time_offset: number
 }
+
+export enum Permission {
+    "websocket.connect",
+    "control.console",
+    "control.start",
+    "control.stop",
+    "control.restart",
+    "database.read",
+    "database.create",
+    "database.update",
+    "database.delete",
+    "database.view_password",
+    "schedule.read",
+    "schedule.create",
+    "schedule.update",
+    "schedule.delete",
+    "user.read",
+    "user.create",
+    "user.update",
+    "user.delete",
+    "backup.read",
+    "backup.create",
+    "backup.delete",
+    "backup.download",
+    "backup.restore",
+    "allocation.read",
+    "allocation.create",
+    "allocation.update",
+    "allocation.delete",
+    "file.read",
+    "file.read-content",
+    "file.create",
+    "file.update",
+    "file.delete",
+    "file.archive",
+    "file.sftp",
+    "startup.read",
+    "startup.update",
+    "startup.docker-image",
+    "settings.rename",
+    "settings.reinstall",
+}
+
+export type createSubuserParams = {
+    email: string
+    permissions: (Permission | string)[]
+}
+
+export type updateSubuserParams = Pick<createSubuserParams, "permissions">

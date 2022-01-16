@@ -4,6 +4,7 @@ import DatabaseManager from "../../managers/client/databasemanager"
 import FileManager from "../../managers/client/filemanager"
 import ScheduleManager from "../../managers/client/schedulemanager"
 import NetworkManager from "../../managers/client/networkmanager"
+import SubuserManager from "../../managers/client/subusermanager"
 
 export default class Server {
     public server_owner: boolean
@@ -43,6 +44,7 @@ export default class Server {
     public files: FileManager
     public schedules: ScheduleManager
     public networks: NetworkManager
+    public subusers: SubuserManager
 
     public raw: any
 
@@ -70,6 +72,7 @@ export default class Server {
         this.files = new FileManager(this._client, this)
         this.schedules = new ScheduleManager(this._client, this)
         this.networks = new NetworkManager(this._client, this)
+        this.subusers = new SubuserManager(this._client, this)
     }
 
     retrieveWebsocketCredentials(): Promise<Types.websocketCredentials> {

@@ -56,7 +56,7 @@ export default class Node {
         this.updated_at = attributes.updated_at
         this.allocated_resources = attributes.allocated_resources
 
-        this.raw = data
+        this.raw = attributes
 
         this.allocations = new AllocationManager(this._client, this)
     }

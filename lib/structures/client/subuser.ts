@@ -22,7 +22,7 @@ export default class Subuser {
         this["2fa_enable"] = attributes["2fa_enable"]
         this.created_at = attributes.created_at
         this.permissions = attributes.permissions
-        this.raw = data
+        this.raw = attributes
     }
 
     update(params: Types.updateSubuserParams): Promise<Subuser> {

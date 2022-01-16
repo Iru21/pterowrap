@@ -18,7 +18,7 @@ export default class Location {
         this.updated_at = attributes.updated_at
         this.created_at = attributes.created_at
 
-        this.raw = data
+        this.raw = attributes
     }
 
     update(params: Types.createOrUpdateLocationParams): Promise<Location> {

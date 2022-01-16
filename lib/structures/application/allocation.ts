@@ -21,7 +21,7 @@ export default class Allocation {
         this.notes = attributes.notes
         this.assigned = attributes.assigned
 
-        this.raw = data
+        this.raw = attributes
     }
 
     delete() {

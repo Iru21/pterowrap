@@ -31,7 +31,7 @@ export default class User {
         this.created_at = attributes.created_at
         this.updated_at = attributes.updated_at
 
-        this.raw = data
+        this.raw = attributes
     }
 
     update(params: Types.updateUserParams): Promise<User | null> {

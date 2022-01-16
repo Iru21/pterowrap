@@ -8,10 +8,12 @@ export default function formatParams(parameters: Types.requestParameters): strin
         switch (typeof parameters.include) {
             case "string":
                 result += `include=${parameters.include}`
+                break
             case "object":
                 if (parameters.include.length > 0) {
                     result += `include=${(parameters.include as string[]).join(",")}`
                 }
+                break
         }
     }
     if (parameters.filters) {

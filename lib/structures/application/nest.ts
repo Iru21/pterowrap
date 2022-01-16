@@ -16,15 +16,16 @@ export default class Nest {
     public eggs: EggManager
 
     constructor(private _client: ApplicationInstance, data: any) {
-        this.id = data.id
-        this.uuid = data.uuid
-        this.author = data.author
-        this.name = data.name
-        this.description = data.description
-        this.created_at = data.created_at
-        this.updated_at = data.updated_at
+        const attributes = data.attributes
+        this.id = attributes.id
+        this.uuid = attributes.uuid
+        this.author = attributes.author
+        this.name = attributes.name
+        this.description = attributes.description
+        this.created_at = attributes.created_at
+        this.updated_at = attributes.updated_at
 
-        this.raw = data
+        this.raw = attributes
 
         this.eggs = new EggManager(this._client, this)
     }

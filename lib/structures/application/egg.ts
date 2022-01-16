@@ -10,12 +10,18 @@ export default class Egg {
     public author: string
     public description: string
     public docker_image: string
+    public docker_images: string[]
     public config: {
         [key: string]: any
     }
     public startup: {
         [key: string]: any
     }
+    public script: {
+        [key: string]: any
+    }
+    public created_at: string
+    public updated_at: string
 
     public raw: any
 
@@ -28,9 +34,13 @@ export default class Egg {
         this.author = attributes.author
         this.description = attributes.description
         this.docker_image = attributes.docker_image
+        this.docker_images = attributes.docker_images
         this.config = attributes.config
         this.startup = attributes.startup
+        this.script = attributes.script
+        this.created_at = attributes.created_at
+        this.updated_at = attributes.updated_at
 
-        this.raw = data
+        this.raw = attributes
     }
 }

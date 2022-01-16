@@ -21,7 +21,7 @@ export default class Location {
         this.raw = data
     }
 
-    update(params: Types.updateLocationParams): Promise<Location> {
+    update(params: Types.createOrUpdateLocationParams): Promise<Location> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Location(this._client, await this._client.call({ endpoint: "locations/" + this.id, method: "PATCH", body: params })))

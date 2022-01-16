@@ -93,12 +93,7 @@ export type createAllocationParams = {
     ports: number[] | string[]
 }
 
-export type createLocationParams = {
-    short: string
-    long: string
-}
-
-export type updateLocationParams = {
+export type createOrUpdateLocationParams = {
     short: string
     long: string
 }
@@ -197,10 +192,7 @@ export type resourceUsage = {
 
 export type powerAction = "start" | "stop" | "restart" | "kill"
 
-export type createClientDatabaseParams = {
-    database: string
-    remote: string
-}
+export type createClientDatabaseParams = Omit<createApplicationDatabaseParams, "host">
 
 export type createScheduleParams = {
     name: string

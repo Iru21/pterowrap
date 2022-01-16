@@ -27,7 +27,7 @@ export default class LocationManager {
         })
     }
 
-    create(params: Types.createLocationParams): Promise<Location> {
+    create(params: Types.createOrUpdateLocationParams): Promise<Location> {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(new Location(this.client, await this.client.call({ endpoint: "locations", method: "POST", body: params })))

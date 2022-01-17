@@ -90,7 +90,7 @@ export type updateNodeParams = {
 export type createAllocationParams = {
     ip: string
     alias?: string
-    ports: number[]
+    ports: string[]
 }
 
 export type createOrUpdateLocationParams = {

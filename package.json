@@ -12,7 +12,7 @@
     ],
     "main": "./dist/index.js",
     "scripts": {
-        "clear-dist": "rm -rf dist",
+        "clear-dist": "rmdir /s /q dist",
         "build": "tsc",
         "publish": "npm run clear-dist && npm run build && npm publish",
         "test": "ts-node ./lib/test.ts"

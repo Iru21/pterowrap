@@ -1,8 +1,8 @@
-import ClientInstance from "../../instance/client"
+import ClientInstance from "../../../instance/client"
 
-import * as Types from "../../types"
-import Server from "../../structures/client/server"
-import Schedule from "../../structures/client/schedule"
+import * as Types from "../../../types"
+import Server from "../../../structures/client/server"
+import Schedule from "../../../structures/client/server/schedule"
 
 export default class ScheduleManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}

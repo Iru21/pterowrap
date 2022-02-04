@@ -1,7 +1,7 @@
-import ClientInstance from "../../instance/client"
-import * as Types from "../../types"
-import Server from "../../structures/client/server"
-import Subuser from "../../structures/client/subuser"
+import ClientInstance from "../../../instance/client"
+import * as Types from "../../../types"
+import Server from "../../../structures/client/server"
+import Subuser from "../../../structures/client/server/subuser"
 
 export default class SubuserManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}

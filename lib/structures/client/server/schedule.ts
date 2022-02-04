@@ -1,7 +1,7 @@
-import * as Types from "../../types"
-import ClientInstance from "../../instance/client"
-import Server from "./server"
-import TaskManager from "../../managers/client/taskmanager"
+import * as Types from "../../../types"
+import ClientInstance from "../../../instance/client"
+import Server from "../server"
+import TaskManager from "../../../managers/client/server/taskmanager"
 
 export default class Schedule {
     public id: number

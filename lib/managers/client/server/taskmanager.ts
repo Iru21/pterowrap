@@ -1,9 +1,9 @@
-import ClientInstance from "../../instance/client"
+import ClientInstance from "../../../instance/client"
 
-import * as Types from "../../types"
-import Server from "../../structures/client/server"
-import Schedule from "../../structures/client/schedule"
-import Task from "../../structures/client/task"
+import * as Types from "../../../types"
+import Server from "../../../structures/client/server"
+import Schedule from "../../../structures/client/server/schedule"
+import Task from "../../../structures/client/server/task"
 
 export default class TaskManager {
     constructor(private client: ClientInstance, public _parentServer: Server, public _parentSchedule: Schedule) {}

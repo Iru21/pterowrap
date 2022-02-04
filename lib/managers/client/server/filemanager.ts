@@ -1,9 +1,9 @@
-import ClientInstance from "../../instance/client"
+import ClientInstance from "../../../instance/client"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Server from "../../structures/client/server"
-import File from "../../structures/client/file"
+import handlePagination from "../../../utils/handlepagination"
+import * as Types from "../../../types"
+import Server from "../../../structures/client/server"
+import File from "../../../structures/client/server/file"
 
 export default class FileManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}

@@ -1,6 +1,6 @@
-import * as Types from "../../types"
-import ClientInstance from "../../instance/client"
-import Server from "./server"
+import * as Types from "../../../types"
+import ClientInstance from "../../../instance/client"
+import Server from "../server"
 
 export default class Backup {
     public uuid: string

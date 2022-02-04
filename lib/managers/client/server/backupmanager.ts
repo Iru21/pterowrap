@@ -1,9 +1,9 @@
-import ClientInstance from "../../instance/client"
+import ClientInstance from "../../../instance/client"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Server from "../../structures/client/server"
-import Backup from "../../structures/client/backup"
+import handlePagination from "../../../utils/handlepagination"
+import * as Types from "../../../types"
+import Server from "../../../structures/client/server"
+import Backup from "../../../structures/client/backup"
 
 export default class BackupManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}

@@ -1,12 +1,12 @@
 import * as Types from "../../types"
 import ClientInstance from "../../instance/client"
-import DatabaseManager from "../../managers/client/databasemanager"
-import FileManager from "../../managers/client/filemanager"
-import ScheduleManager from "../../managers/client/schedulemanager"
-import NetworkManager from "../../managers/client/networkmanager"
-import SubuserManager from "../../managers/client/subusermanager"
-import BackupManager from "../../managers/client/backupmanager"
-import VariableManager from "../../managers/client/variablemanager"
+import DatabaseManager from "../../managers/client/server/databasemanager"
+import FileManager from "../../managers/client/server/filemanager"
+import ScheduleManager from "../../managers/client/server/schedulemanager"
+import NetworkManager from "../../managers/client/server/networkmanager"
+import SubuserManager from "../../managers/client/server/subusermanager"
+import BackupManager from "../../managers/client/server/backupmanager"
+import VariableManager from "../../managers/client/server/variablemanager"
 
 export default class Server {
     public server_owner: boolean

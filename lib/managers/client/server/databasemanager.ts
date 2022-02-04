@@ -1,7 +1,7 @@
-import ClientInstance from "../../instance/client"
-import * as Types from "../../types"
-import Server from "../../structures/client/server"
-import Database from "../../structures/client/database"
+import ClientInstance from "../../../instance/client"
+import * as Types from "../../../types"
+import Server from "../../../structures/client/server"
+import Database from "../../../structures/client/server/database"
 
 export default class DatabaseManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}

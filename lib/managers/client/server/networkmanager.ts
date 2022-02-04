@@ -1,8 +1,8 @@
-import ClientInstance from "../../instance/client"
+import ClientInstance from "../../../instance/client"
 
-import * as Types from "../../types"
-import Server from "../../structures/client/server"
-import AllocationManager from "../client/allocationmanager"
+import * as Types from "../../../types"
+import Server from "../../../structures/client/server"
+import AllocationManager from "./allocationmanager"
 
 export default class NetworkManager {
     public allocations: AllocationManager

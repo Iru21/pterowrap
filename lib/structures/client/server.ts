@@ -130,4 +130,24 @@ export default class Server {
             }
         })
     }
+
+    rename(name: string) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: `servers/${this.identifier}/settings/rename`, method: "POST", body: { name } }))
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+
+    reinstall() {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await this._client.call({ endpoint: `servers/${this.identifier}/settings/reinstall`, method: "POST" }))
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
 }

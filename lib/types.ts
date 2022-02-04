@@ -272,3 +272,8 @@ export type startupData = {
     raw_startup_command: string
     docker_images: string[]
 }
+
+export type createClientApiKeyParams = {
+    description: string
+    allowed_ips?: string[]
+}

@@ -1,4 +1,4 @@
-import ServerManager from "../managers/client/severmanager"
+import ServerManager from "../managers/client/servermanager"
 import Instance from "./instance"
 
 export default class ClientInstance extends Instance {

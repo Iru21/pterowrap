@@ -266,3 +266,9 @@ export type createSubuserParams = {
 }
 
 export type updateSubuserParams = Pick<createSubuserParams, "permissions">
+
+export type startupData = {
+    startup_command: string
+    raw_startup_command: string
+    docker_images: string[]
+}

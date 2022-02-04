@@ -6,6 +6,7 @@ import ScheduleManager from "../../managers/client/schedulemanager"
 import NetworkManager from "../../managers/client/networkmanager"
 import SubuserManager from "../../managers/client/subusermanager"
 import BackupManager from "../../managers/client/backupmanager"
+import VariableManager from "../../managers/client/variablemanager"
 
 export default class Server {
     public server_owner: boolean
@@ -47,6 +48,7 @@ export default class Server {
     public networks: NetworkManager
     public subusers: SubuserManager
     public backups: BackupManager
+    public variables: VariableManager
 
     public raw: any
 
@@ -76,6 +78,7 @@ export default class Server {
         this.networks = new NetworkManager(this._client, this)
         this.subusers = new SubuserManager(this._client, this)
         this.backups = new BackupManager(this._client, this)
+        this.variables = new VariableManager(this._client, this)
     }
 
     retrieveWebsocketCredentials(): Promise<Types.websocketCredentials> {
@@ -92,6 +95,16 @@ export default class Server {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve((await this._client.call({ endpoint: `servers/${this.identifier}/resources` })).attributes)
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+
+    retrieveStartupData(): Promise<Types.startupData> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve((await this._client.call({ endpoint: `servers/${this.identifier}/startup` })).meta)
             } catch (e) {
                 reject(e)
             }

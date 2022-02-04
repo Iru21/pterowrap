@@ -4,12 +4,15 @@ import handlePagination from "../../utils/handlepagination"
 import * as Types from "../../types"
 import User from "../../structures/client/user"
 import TwoFactorManager from "./account/twofactormanager"
+import ApiKeyManager from "./account/apikeymanager"
 
 export default class AccountManager {
     public twofactor: TwoFactorManager
+    public apikeys: ApiKeyManager
 
     constructor(private client: ClientInstance) {
         this.twofactor = new TwoFactorManager(client)
+        this.apikeys = new ApiKeyManager(client)
     }
 
     retrieveDetails() {

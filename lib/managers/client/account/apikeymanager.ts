@@ -3,7 +3,7 @@ import ApiKey from "../../../structures/client/account/apikey"
 
 import * as Types from "../../../types"
 
-export default class TwoFactorManager {
+export default class ApiKeyManager {
     constructor(private client: ClientInstance) {}
 
     list(): Promise<ApiKey[]> {

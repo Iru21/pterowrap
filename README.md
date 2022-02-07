@@ -27,4 +27,4 @@ const client = new AdminInstance(url, key);
 
 ## Documentation
 
-### [Click Here](https://github.com/Iru21/pterowrap/wiki)
+### [Click Here](https://github.com/Iru21/pterowrap/tree/v1.0/wiki)

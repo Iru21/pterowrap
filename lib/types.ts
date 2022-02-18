@@ -44,8 +44,8 @@ export type updateUserParams = {
     username: string
     first_name: string
     last_name: string
-    language: string
-    password: string
+    language?: string
+    password?: string
     root_admin?: boolean
 }
 

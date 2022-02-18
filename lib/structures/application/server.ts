@@ -128,7 +128,7 @@ export default class Server {
     delete(force: boolean = false) {
         return new Promise(async (resolve, reject) => {
             try {
-                if (!force) resolve(new Server(this._client, await this._client.call({ endpoint: `servers/${this.id}`, method: "DELETE" })))
+                if (!force) resolve(await this._client.call({ endpoint: `servers/${this.id}`, method: "DELETE" }))
                 else resolve(await this._client.call({ endpoint: `servers/${this.id}/force`, method: "DELETE" }))
             } catch (e) {
                 reject(e)

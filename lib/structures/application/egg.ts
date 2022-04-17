@@ -14,9 +14,7 @@ export default class Egg {
     public config: {
         [key: string]: any
     }
-    public startup: {
-        [key: string]: any
-    }
+    public startup: string
     public script: {
         [key: string]: any
     }

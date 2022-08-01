@@ -1,8 +1,8 @@
-import LocationManager from "../managers/application/locationmanager"
-import NestManager from "../managers/application/nestmanager"
-import NodeManager from "../managers/application/nodemanager"
+import LocationManager from "../managers/application/LocationManager"
+import NestManager from "../managers/application/NestManager"
+import NodeManager from "../managers/application/NodeManager"
 import ServerManager from "../managers/application/ServerManager"
-import UserManager from "../managers/application/usermanager"
+import UserManager from "../managers/application/UserManager"
 import BaseInstance from "./BaseInstance"
 
 export default class ApplicationInstance extends BaseInstance {

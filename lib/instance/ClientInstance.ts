@@ -1,5 +1,5 @@
-import AccountManager from "../managers/client/accountmanager"
-import ServerManager from "../managers/client/servermanager"
+import ServerManager from "../managers/client/ServerManager"
+import AccountManager from "../managers/client/AccountManager"
 import BaseInstance from "./BaseInstance"
 
 export default class ClientInstance extends BaseInstance {

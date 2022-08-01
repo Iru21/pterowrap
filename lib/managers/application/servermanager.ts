@@ -1,8 +1,8 @@
-import ApplicationInstance from "../../instance/application"
+import ApplicationInstance from "../../instance/ApplicationInstance"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Server from "../../structures/application/server"
+import * as Types from "../../utils/Types"
+import Server from "../../structures/application/Server"
+import Util from "../../utils/Util"
 
 export default class ServerManager {
     constructor(private client: ApplicationInstance) {}
@@ -10,7 +10,7 @@ export default class ServerManager {
     list(options: Types.requestParameters = {}): Promise<Server[]> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await handlePagination(this.client, "servers", options, Server))
+                resolve(await Util.handlePagination(this.client, "servers", options, Server))
             } catch (e) {
                 reject(e)
             }

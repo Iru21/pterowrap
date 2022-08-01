@@ -1,17 +1,15 @@
-import format_url from "../utils/formaturl"
+import fetch from "axios"
+import * as Types from "../utils/Types"
+import Util from "../utils/Util"
 
-import fetch, { AxiosStatic } from "axios"
-import * as Types from "../types"
-import formatParams from "../utils/formatparams"
-
-export default abstract class Instance {
+export default abstract class BaseInstance {
     private headers: { [key: string]: string }
 
     constructor(public url: string | undefined, private api_key: string | undefined, private instance_type: Types.instanceType) {
         if (!url) throw new Error("Url is undefined!")
         else if (!api_key) throw new Error("Api Key is undefined!")
 
-        this.url = format_url(url)
+        this.url = Util.formatURL(url)
         this.api_key = api_key
 
         this.headers = {
@@ -23,7 +21,7 @@ export default abstract class Instance {
 
     call(options: Types.callOptions): Promise<any> {
         const { endpoint, parameters, method, body } = this.formatOptions(options)
-        const params = formatParams(parameters!)
+        const params = Util.formatParams(parameters!)
         return new Promise<any>(async (resolve: any, reject: any) => {
             try {
                 const call = this.url + `/${this.instance_type}/` + endpoint + params

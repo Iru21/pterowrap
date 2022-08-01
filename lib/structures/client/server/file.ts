@@ -1,6 +1,5 @@
-import * as Types from "../../../types"
-import ClientInstance from "../../../instance/client"
-import Server from "../server"
+import ClientInstance from "../../../instance/ClientInstance"
+import Server from "../Server"
 
 export default class File {
     public name: string
@@ -18,7 +17,7 @@ export default class File {
 
     public raw: any
 
-    constructor(private _client: ClientInstance, data: any, _path: string, public _parentServer: Server) {
+    constructor(private instance: ClientInstance, data: any, _path: string, public _parentServer: Server) {
         const attributes = data.attributes
         this.name = attributes.name
         this.mode = attributes.mode
@@ -39,7 +38,9 @@ export default class File {
     retrieveContents(): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/files/contents?file=${this._pathw.replace(/\//g, "%2F")}` }))
+                resolve(
+                    await this.instance.call({ endpoint: `servers/${this._parentServer.identifier}/files/contents?file=${this._pathw.replace(/\//g, "%2F")}` })
+                )
             } catch (e) {
                 reject(e)
             }
@@ -49,7 +50,13 @@ export default class File {
     retrieveDownloadLink(): Promise<string> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve((await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/files/download?file=${this._pathw.replace(/\//g, "%2F")}` })).attributes.url)
+                resolve(
+                    (
+                        await this.instance.call({
+                            endpoint: `servers/${this._parentServer.identifier}/files/download?file=${this._pathw.replace(/\//g, "%2F")}`,
+                        })
+                    ).attributes.url
+                )
             } catch (e) {
                 reject(e)
             }
@@ -60,7 +67,7 @@ export default class File {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(
-                    await this._client.call({
+                    await this.instance.call({
                         endpoint: `servers/${this._parentServer.identifier}/files/rename`,
                         body: {
                             root: this._path,
@@ -84,7 +91,7 @@ export default class File {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(
-                    await this._client.call({
+                    await this.instance.call({
                         endpoint: `servers/${this._parentServer.identifier}/files/copy`,
                         body: {
                             location: this._pathw,
@@ -105,7 +112,7 @@ export default class File {
             }
             try {
                 resolve(
-                    await this._client.call({
+                    await this.instance.call({
                         endpoint: `servers/${this._parentServer.identifier}/files/write?file=${this._pathw.replace(/\//g, "%2F")}`,
                         body: data,
                         method: "POST",
@@ -122,8 +129,8 @@ export default class File {
             try {
                 resolve(
                     new File(
-                        this._client,
-                        await this._client.call({
+                        this.instance,
+                        await this.instance.call({
                             endpoint: `servers/${this._parentServer.identifier}/files/compress`,
                             body: {
                                 root: this._path,
@@ -148,7 +155,7 @@ export default class File {
             }
             try {
                 resolve(
-                    await this._client.call({
+                    await this.instance.call({
                         endpoint: `servers/${this._parentServer.identifier}/files/decompress`,
                         body: {
                             root: this._path,
@@ -167,7 +174,7 @@ export default class File {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(
-                    await this._client.call({
+                    await this.instance.call({
                         endpoint: `servers/${this._parentServer.identifier}/files/delete`,
                         body: {
                             root: this._path,

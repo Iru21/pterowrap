@@ -1,18 +1,16 @@
-import ClientInstance from "../../instance/client"
+import ClientInstance from "../../instance/ClientInstance"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import User from "../../structures/client/user"
-import TwoFactorManager from "./account/twofactormanager"
-import ApiKeyManager from "./account/apikeymanager"
+import User from "../../structures/client/User"
+import APIKeyManager from "./account/APIKeyManager"
+import TwoFactorManager from "./account/TwoFactorManager"
 
 export default class AccountManager {
     public twofactor: TwoFactorManager
-    public apikeys: ApiKeyManager
+    public apikeys: APIKeyManager
 
     constructor(private client: ClientInstance) {
         this.twofactor = new TwoFactorManager(client)
-        this.apikeys = new ApiKeyManager(client)
+        this.apikeys = new APIKeyManager(client)
     }
 
     retrieveDetails() {
@@ -38,7 +36,13 @@ export default class AccountManager {
     updatePassword(current: string, password: string) {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this.client.call({ endpoint: "account/password", method: "PUT", body: { current_password: current, password, password_confirmation: password } }))
+                resolve(
+                    await this.client.call({
+                        endpoint: "account/password",
+                        method: "PUT",
+                        body: { current_password: current, password, password_confirmation: password },
+                    })
+                )
             } catch (e) {
                 reject(e)
             }

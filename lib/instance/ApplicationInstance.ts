@@ -1,11 +1,11 @@
 import LocationManager from "../managers/application/locationmanager"
 import NestManager from "../managers/application/nestmanager"
 import NodeManager from "../managers/application/nodemanager"
-import ServerManager from "../managers/application/servermanager"
+import ServerManager from "../managers/application/ServerManager"
 import UserManager from "../managers/application/usermanager"
-import Instance from "./instance"
+import BaseInstance from "./BaseInstance"
 
-export default class ApplicationInstance extends Instance {
+export default class ApplicationInstance extends BaseInstance {
     public users: UserManager
     public nodes: NodeManager
     public locations: LocationManager

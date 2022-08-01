@@ -1,6 +1,6 @@
-import * as Types from "../../types"
-import ApplicationInstance from "../../instance/application"
-import AllocationManager from "../../managers/application/allocationmanager"
+import * as Types from "../../utils/Types"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import AllocationManager from "../../managers/application/AllocationManager"
 
 export default class Node {
     public id: number

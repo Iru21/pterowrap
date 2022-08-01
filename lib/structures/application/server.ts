@@ -1,11 +1,12 @@
-import * as Types from "../../types"
-import ApplicationInstance from "../../instance/application"
-import DatabaseManager from "../../managers/application/databasemanager"
+import * as Types from "../../utils/Types"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import DatabaseManager from "../../managers/application/DatabaseManager"
 
 export default class Server {
     public id: number
     public external_id: string
     public uuid: string
+    public identifier: string
     public name: string
     public description: string
     public suspended: boolean
@@ -46,6 +47,7 @@ export default class Server {
         this.id = attributes.id
         this.external_id = attributes.external_id
         this.uuid = attributes.uuid
+        this.identifier = attributes.identifier
         this.name = attributes.name
         this.description = attributes.description
         this.suspended = attributes.suspended

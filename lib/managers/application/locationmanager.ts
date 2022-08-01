@@ -1,8 +1,8 @@
-import ApplicationInstance from "../../instance/application"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import Location from "../../structures/application/Location"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Location from "../../structures/application/location"
+import * as Types from "../../utils/Types"
+import Util from "../../utils/Util"
 
 export default class LocationManager {
     constructor(private client: ApplicationInstance) {}
@@ -10,7 +10,7 @@ export default class LocationManager {
     list(options: Types.requestParameters = {}): Promise<Location[]> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await handlePagination(this.client, "locations", options, Location))
+                resolve(await Util.handlePagination(this.client, "locations", options, Location))
             } catch (e) {
                 reject(e)
             }

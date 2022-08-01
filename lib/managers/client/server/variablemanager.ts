@@ -1,9 +1,7 @@
-import ClientInstance from "../../../instance/client"
+import ClientInstance from "../../../instance/ClientInstance"
 
-import handlePagination from "../../../utils/handlepagination"
-import * as Types from "../../../types"
-import Server from "../../../structures/client/server"
-import Variable from "../../../structures/client/server/variable"
+import Server from "../../../structures/client/Server"
+import Variable from "../../../structures/client/server/Variable"
 
 export default class VariableManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}

@@ -1,5 +1,5 @@
-import * as Types from "../../types"
-import ApplicationInstance from "../../instance/application"
+import * as Types from "../../utils/Types"
+import ApplicationInstance from "../../instance/ApplicationInstance"
 
 export default class User {
     public id: number

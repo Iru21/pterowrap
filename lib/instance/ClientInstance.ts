@@ -1,8 +1,8 @@
 import AccountManager from "../managers/client/accountmanager"
 import ServerManager from "../managers/client/servermanager"
-import Instance from "./instance"
+import BaseInstance from "./BaseInstance"
 
-export default class ClientInstance extends Instance {
+export default class ClientInstance extends BaseInstance {
     public servers: ServerManager
     public account: AccountManager
 

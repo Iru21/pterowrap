@@ -1,14 +1,20 @@
-import ApplicationInstance from "../../instance/application"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import User from "../../structures/application/User"
 
-import User from "../../structures/application/user"
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
+import * as Types from "../../utils/Types"
+import Util from "../../utils/Util"
 
 export default class UserManager {
     constructor(private client: ApplicationInstance) {}
 
-    async list(options: Types.requestParameters = {}): Promise<User[]> {
-        return await handlePagination(this.client, "users", options, User)
+    list(options: Types.requestParameters = {}): Promise<User[]> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await Util.handlePagination(this.client, "users", options, User))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
 
     get(id: number, options: Types.requestParameters = {}): Promise<User> {

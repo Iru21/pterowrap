@@ -1,8 +1,8 @@
-import ApplicationInstance from "../../instance/application"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import Nest from "../../structures/application/Nest"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Nest from "../../structures/application/nest"
+import * as Types from "../../utils/Types"
+import Util from "../../utils/Util"
 
 export default class NestManager {
     constructor(private client: ApplicationInstance) {}
@@ -10,7 +10,7 @@ export default class NestManager {
     list(options: Types.requestParameters = {}): Promise<Nest[]> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await handlePagination(this.client, "nests", options, Nest))
+                resolve(await Util.handlePagination(this.client, "nests", options, Nest))
             } catch (e) {
                 reject(e)
             }

@@ -1,6 +1,6 @@
-import ClientInstance from "../../../instance/client"
+import ClientInstance from "../../../instance/ClientInstance"
 
-export default class ApiKey {
+export default class APIKey {
     public identifier: string
     public description: string
     public allowed_ips: string[]

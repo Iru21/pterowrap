@@ -190,7 +190,7 @@ export type resourceUsage = {
     }
 }
 
-export type powerAction = "start" | "stop" | "restart" | "kill"
+export type powerSignal = "start" | "stop" | "restart" | "kill"
 
 export type createClientDatabaseParams = Omit<createApplicationDatabaseParams, "host">
 

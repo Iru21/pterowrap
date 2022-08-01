@@ -1,9 +1,8 @@
-import ApplicationInstance from "../../instance/application"
+import ApplicationInstance from "../../instance/ApplicationInstance"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Egg from "../../structures/application/egg"
-import Nest from "../../structures/application/nest"
+import * as Types from "../../utils/Types"
+import Nest from "../../structures/application/Nest"
+import Egg from "../../structures/application/Egg"
 
 export default class EggManager {
     constructor(private client: ApplicationInstance, private _parentNest: Nest) {}

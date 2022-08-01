@@ -1,6 +1,5 @@
-import * as Types from "../../types"
-import ApplicationInstance from "../../instance/application"
-import Node from "../../structures/application/node"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import Node from "./Node"
 
 export default class Allocation {
     public id: number

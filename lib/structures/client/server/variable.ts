@@ -1,6 +1,6 @@
-import * as Types from "../../../types"
-import ClientInstance from "../../../instance/client"
-import Server from "../server"
+import * as Types from "../../../utils/Types"
+import ClientInstance from "../../../instance/ClientInstance"
+import Server from "../Server"
 
 export default class Variable {
     public name: string

@@ -1,8 +1,8 @@
-import ClientInstance from "../../../instance/client"
+import ClientInstance from "../../../instance/ClientInstance"
 
-import * as Types from "../../../types"
-import Server from "../../../structures/client/server"
-import Allocation from "../../../structures/client/server/allocation"
+import * as Types from "../../../utils/Types"
+import Server from "../../../structures/client/Server"
+import Allocation from "../../../structures/client/server/Allocation"
 
 export default class AllocationManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}

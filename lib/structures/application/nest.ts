@@ -1,6 +1,6 @@
-import * as Types from "../../types"
-import ApplicationInstance from "../../instance/application"
-import EggManager from "../../managers/application/eggmanager"
+import * as Types from "../../utils/Types"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import EggManager from "../../managers/application/EggManager"
 
 export default class Nest {
     public id: number

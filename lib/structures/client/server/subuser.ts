@@ -1,6 +1,6 @@
-import * as Types from "../../../types"
-import ClientInstance from "../../../instance/client"
-import Server from "../server"
+import * as Types from "../../../utils/Types"
+import ClientInstance from "../../../instance/ClientInstance"
+import Server from "../Server"
 
 export default class Subuser {
     public uuid: string
@@ -28,7 +28,15 @@ export default class Subuser {
     update(params: Types.updateSubuserParams): Promise<Subuser> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(new Subuser(this._client, (await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/users/${this.uuid}`, method: "POST", body: params })).data, this._parentServer))
+                resolve(
+                    new Subuser(
+                        this._client,
+                        (
+                            await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/users/${this.uuid}`, method: "POST", body: params })
+                        ).data,
+                        this._parentServer
+                    )
+                )
             } catch (e) {
                 reject(e)
             }

@@ -1,6 +1,6 @@
-import * as Types from "../../../types"
-import ClientInstance from "../../../instance/client"
-import Server from "../server"
+import * as Types from "../../../utils/Types"
+import ClientInstance from "../../../instance/ClientInstance"
+import Server from "../Server"
 
 export default class Database {
     public id: string
@@ -34,7 +34,18 @@ export default class Database {
     rotatePassword(): Promise<Database> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(new Database(this._client, (await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/databases/${this.id}/rotate-password`, method: "POST" })).data, this._parentServer))
+                resolve(
+                    new Database(
+                        this._client,
+                        (
+                            await this._client.call({
+                                endpoint: `servers/${this._parentServer.identifier}/databases/${this.id}/rotate-password`,
+                                method: "POST",
+                            })
+                        ).data,
+                        this._parentServer
+                    )
+                )
             } catch (e) {
                 reject(e)
             }

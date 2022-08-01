@@ -1,9 +1,9 @@
-import ClientInstance from "../../../instance/client"
+import ClientInstance from "../../../instance/ClientInstance"
 
-import * as Types from "../../../types"
-import Server from "../../../structures/client/server"
-import Schedule from "../../../structures/client/server/schedule"
-import Task from "../../../structures/client/server/task"
+import * as Types from "../../../utils/Types"
+import Server from "../../../structures/client/Server"
+import Schedule from "../../../structures/client/server/Schedule"
+import Task from "../../../structures/client/server/Task"
 
 export default class TaskManager {
     constructor(private client: ClientInstance, public _parentServer: Server, public _parentSchedule: Schedule) {}
@@ -11,7 +11,11 @@ export default class TaskManager {
     create(params: Types.createOrUpdateTaskParams): Promise<Task> {
         return new Promise(async (resolve, reject) => {
             try {
-                const data = await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks`, method: "POST", body: params })
+                const data = await this.client.call({
+                    endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks`,
+                    method: "POST",
+                    body: params,
+                })
                 resolve(new Task(this.client, data, this._parentServer, this._parentSchedule))
             } catch (e) {
                 reject(e)
@@ -23,7 +27,11 @@ export default class TaskManager {
     update(id: number, params: Types.createOrUpdateTaskParams): Promise<Task> {
         return new Promise(async (resolve, reject) => {
             try {
-                const data = await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${id}`, method: "POST", body: params })
+                const data = await this.client.call({
+                    endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${id}`,
+                    method: "POST",
+                    body: params,
+                })
                 resolve(new Task(this.client, data, this._parentServer, this._parentSchedule))
             } catch (e) {
                 reject(e)
@@ -34,7 +42,12 @@ export default class TaskManager {
     delete(id: number) {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${id}`, method: "DELETE" }))
+                resolve(
+                    await this.client.call({
+                        endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${id}`,
+                        method: "DELETE",
+                    })
+                )
             } catch (e) {
                 reject(e)
             }

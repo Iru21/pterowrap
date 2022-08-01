@@ -1,8 +1,8 @@
-import ApplicationInstance from "../../instance/application"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import Node from "../../structures/application/Node"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Node from "../../structures/application/node"
+import * as Types from "../../utils/Types"
+import Util from "../../utils/Util"
 
 export default class NodeManager {
     constructor(private client: ApplicationInstance) {}
@@ -10,7 +10,7 @@ export default class NodeManager {
     list(options: Types.requestParameters = {}): Promise<Node[]> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await handlePagination(this.client, "nodes", options, Node))
+                resolve(await Util.handlePagination(this.client, "nodes", options, Node))
             } catch (e) {
                 reject(e)
             }

@@ -1,7 +1,7 @@
-import ClientInstance from "../../../instance/client"
-import * as Types from "../../../types"
-import Server from "../../../structures/client/server"
-import Subuser from "../../../structures/client/server/subuser"
+import ClientInstance from "../../../instance/ClientInstance"
+import * as Types from "../../../utils/Types"
+import Server from "../../../structures/client/Server"
+import Subuser from "../../../structures/client/server/Subuser"
 
 export default class SubuserManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}
@@ -24,7 +24,13 @@ export default class SubuserManager {
     get(uuid: string): Promise<Subuser> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(new Subuser(this.client, (await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/users/${uuid}` })).data, this._parentServer))
+                resolve(
+                    new Subuser(
+                        this.client,
+                        (await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/users/${uuid}` })).data,
+                        this._parentServer
+                    )
+                )
             } catch (e) {
                 reject(e)
             }
@@ -34,7 +40,13 @@ export default class SubuserManager {
     create(params: Types.createSubuserParams): Promise<Subuser> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(new Subuser(this.client, (await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/users`, method: "POST", body: params })).data, this._parentServer))
+                resolve(
+                    new Subuser(
+                        this.client,
+                        (await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/users`, method: "POST", body: params })).data,
+                        this._parentServer
+                    )
+                )
             } catch (e) {
                 reject(e)
             }

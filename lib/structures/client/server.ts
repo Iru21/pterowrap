@@ -1,12 +1,12 @@
-import * as Types from "../../types"
-import ClientInstance from "../../instance/client"
-import DatabaseManager from "../../managers/client/server/databasemanager"
-import FileManager from "../../managers/client/server/filemanager"
-import ScheduleManager from "../../managers/client/server/schedulemanager"
-import NetworkManager from "../../managers/client/server/networkmanager"
-import SubuserManager from "../../managers/client/server/subusermanager"
-import BackupManager from "../../managers/client/server/backupmanager"
-import VariableManager from "../../managers/client/server/variablemanager"
+import { Types } from "../.."
+import ClientInstance from "../../instance/ClientInstance"
+import DatabaseManager from "../../managers/client/server/DatabaseManager"
+import BackupManager from "../../managers/client/server/BackupManager"
+import FileManager from "../../managers/client/server/FileManager"
+import NetworkManager from "../../managers/client/server/NetworkManager"
+import ScheduleManager from "../../managers/client/server/ScheduleManager"
+import SubuserManager from "../../managers/client/server/SubuserManager"
+import VariableManager from "../../managers/client/server/VariableManager"
 
 export default class Server {
     public server_owner: boolean
@@ -121,10 +121,10 @@ export default class Server {
         })
     }
 
-    sendPowerAction(action: Types.powerAction) {
+    sendPowerSignal(signal: Types.powerSignal) {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this._client.call({ endpoint: `servers/${this.identifier}/power`, method: "POST", body: { action } }))
+                resolve(await this._client.call({ endpoint: `servers/${this.identifier}/power`, method: "POST", body: { signal } }))
             } catch (e) {
                 reject(e)
             }

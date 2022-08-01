@@ -1,6 +1,4 @@
-import * as Types from "../../types"
-import ApplicationInstance from "../../instance/application"
-import Nest from "./nest"
+import ApplicationInstance from "../../instance/ApplicationInstance"
 
 export default class Egg {
     public id: number

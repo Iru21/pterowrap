@@ -1,9 +1,9 @@
-import ApplicationInstance from "../../instance/application"
+import ApplicationInstance from "../../instance/ApplicationInstance"
 
-import handlePagination from "../../utils/handlepagination"
-import * as Types from "../../types"
-import Node from "../../structures/application/node"
-import Allocation from "../../structures/application/allocation"
+import * as Types from "../../utils/Types"
+import Node from "../../structures/application/Node"
+import Util from "../../utils/Util"
+import Allocation from "../../structures/application/Allocation"
 
 export default class AllocationManager {
     constructor(private client: ApplicationInstance, public _parentNode: Node) {}
@@ -11,7 +11,7 @@ export default class AllocationManager {
     list(options: Types.requestParameters = {}): Promise<Allocation[]> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await handlePagination(this.client, `nodes/${this._parentNode.id}/allocations`, options, Allocation, this._parentNode))
+                resolve(await Util.handlePagination(this.client, `nodes/${this._parentNode.id}/allocations`, options, Allocation, this._parentNode))
             } catch (e) {
                 reject(e)
             }

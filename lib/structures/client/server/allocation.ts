@@ -1,7 +1,5 @@
-import * as Types from "../../../types"
-import ClientInstance from "../../../instance/client"
-import Server from "../server"
-import TaskManager from "../../../managers/client/server/taskmanager"
+import ClientInstance from "../../../instance/ClientInstance"
+import Server from "../Server"
 
 export default class Allocation {
     public id: number
@@ -29,7 +27,11 @@ export default class Allocation {
     setNote(note: string): Promise<Allocation> {
         return new Promise(async (resolve, reject) => {
             try {
-                const data = await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/network/allocations/${this.id}`, method: "POST", body: { notes: note } })
+                const data = await this._client.call({
+                    endpoint: `servers/${this._parentServer.identifier}/network/allocations/${this.id}`,
+                    method: "POST",
+                    body: { notes: note },
+                })
                 resolve(new Allocation(this._client, data, this._parentServer))
             } catch (e) {
                 reject(e)
@@ -40,7 +42,10 @@ export default class Allocation {
     setPrimary(): Promise<Allocation> {
         return new Promise(async (resolve, reject) => {
             try {
-                const data = await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/network/allocations/${this.id}/primary`, method: "POST" })
+                const data = await this._client.call({
+                    endpoint: `servers/${this._parentServer.identifier}/network/allocations/${this.id}/primary`,
+                    method: "POST",
+                })
                 resolve(new Allocation(this._client, data, this._parentServer))
             } catch (e) {
                 reject(e)

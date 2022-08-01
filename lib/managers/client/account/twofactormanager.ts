@@ -1,4 +1,4 @@
-import ClientInstance from "../../../instance/client"
+import ClientInstance from "../../../instance/ClientInstance"
 
 export default class TwoFactorManager {
     constructor(private client: ClientInstance) {}

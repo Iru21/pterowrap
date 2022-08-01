@@ -1,7 +1,7 @@
-import * as Types from "../../../types"
-import ClientInstance from "../../../instance/client"
-import Server from "../server"
-import Schedule from "./schedule"
+import * as Types from "../../../utils/Types"
+import ClientInstance from "../../../instance/ClientInstance"
+import Server from "../Server"
+import Schedule from "./Schedule"
 
 export default class Task {
     public id: number
@@ -32,7 +32,11 @@ export default class Task {
     update(params: Types.createOrUpdateTaskParams): Promise<Task> {
         return new Promise(async (resolve, reject) => {
             try {
-                const data = await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${this.id}`, method: "POST", body: params })
+                const data = await this._client.call({
+                    endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${this.id}`,
+                    method: "POST",
+                    body: params,
+                })
                 resolve(new Task(this._client, data, this._parentServer, this._parentSchedule))
             } catch (e) {
                 reject(e)
@@ -43,7 +47,12 @@ export default class Task {
     delete() {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${this.id}`, method: "DELETE" }))
+                resolve(
+                    await this._client.call({
+                        endpoint: `servers/${this._parentServer.identifier}/schedules/${this._parentSchedule.id}/tasks/${this.id}`,
+                        method: "DELETE",
+                    })
+                )
             } catch (e) {
                 reject(e)
             }

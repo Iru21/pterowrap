@@ -1,7 +1,7 @@
-import * as Types from "../../../types"
-import ClientInstance from "../../../instance/client"
-import Server from "../server"
-import TaskManager from "../../../managers/client/server/taskmanager"
+import * as Types from "../../../utils/Types"
+import ClientInstance from "../../../instance/ClientInstance"
+import Server from "../Server"
+import TaskManager from "../../../managers/client/server/TaskManager"
 
 export default class Schedule {
     public id: number
@@ -48,7 +48,11 @@ export default class Schedule {
     update(params: Types.updateScheduleParams): Promise<Schedule> {
         return new Promise(async (resolve, reject) => {
             try {
-                const data = await this._client.call({ endpoint: `servers/${this._parentServer.identifier}/schedules/${this.id}`, method: "POST", body: params })
+                const data = await this._client.call({
+                    endpoint: `servers/${this._parentServer.identifier}/schedules/${this.id}`,
+                    method: "POST",
+                    body: params,
+                })
                 resolve(new Schedule(this._client, data, this._parentServer))
             } catch (e) {
                 reject(e)

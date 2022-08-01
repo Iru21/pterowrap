@@ -1,6 +1,6 @@
-import * as Types from "../../types"
-import ApplicationInstance from "../../instance/application"
-import Server from "./server"
+import * as Types from "../../utils/Types"
+import ApplicationInstance from "../../instance/ApplicationInstance"
+import Server from "./Server"
 
 export default class Database {
     public id: number
@@ -34,7 +34,12 @@ export default class Database {
     resetPassword() {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this._client.call({ endpoint: `servers/${this._parentServer.id}/databases/${this.id}/reset_password`, method: "POST" }))
+                resolve(
+                    await this._client.call({
+                        endpoint: `servers/${this._parentServer.id}/databases/${this.id}/reset_password`,
+                        method: "POST",
+                    })
+                )
             } catch (e) {
                 reject(e)
             }

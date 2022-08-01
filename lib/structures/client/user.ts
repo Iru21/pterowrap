@@ -1,5 +1,4 @@
-import * as Types from "../../types"
-import ClientInstance from "../../instance/client"
+import ClientInstance from "../../instance/ClientInstance"
 
 export default class User {
     public id: number

@@ -1,7 +1,7 @@
-import ClientInstance from "../../../instance/client"
-import * as Types from "../../../types"
-import Server from "../../../structures/client/server"
-import Database from "../../../structures/client/server/database"
+import ClientInstance from "../../../instance/ClientInstance"
+import * as Types from "../../../utils/Types"
+import Server from "../../../structures/client/Server"
+import Database from "../../../structures/client/server/Database"
 
 export default class DatabaseManager {
     constructor(private client: ClientInstance, public _parentServer: Server) {}
@@ -24,7 +24,13 @@ export default class DatabaseManager {
     create(params: Types.createClientDatabaseParams): Promise<Database> {
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(new Database(this.client, (await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/databases`, method: "POST", body: params })).data, this._parentServer))
+                resolve(
+                    new Database(
+                        this.client,
+                        (await this.client.call({ endpoint: `servers/${this._parentServer.identifier}/databases`, method: "POST", body: params })).data,
+                        this._parentServer
+                    )
+                )
             } catch (e) {
                 reject(e)
             }

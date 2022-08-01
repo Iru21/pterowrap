@@ -1,4 +1,4 @@
-# PteroWrap v1.1.3
+# PteroWrap v1.1.4
 
 [![npm version](https://badge.fury.io/js/pterowrap.svg)](https://badge.fury.io/js/pterowrap)
 

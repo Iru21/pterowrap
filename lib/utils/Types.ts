@@ -118,7 +118,7 @@ export type updateServerBuildParams = {
         backups: number
         allocations?: number
     }
-    oom_disabled?: boolean
+    oom_killer?: boolean
 }
 
 export type updateServerStartupParams = {
@@ -164,7 +164,7 @@ export type createServerParams = {
     }
     start_on_completion?: boolean
     skip_scripts?: boolean
-    oom_disabled?: boolean
+    oom_killer?: boolean
 }
 
 export type createApplicationDatabaseParams = {

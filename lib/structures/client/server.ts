@@ -31,7 +31,7 @@ export default class Server {
         cpu: number
         io: number
         threads: number | null
-        oom_disabled: boolean
+        oom_killer: boolean
     }
     public feature_limits: {
         databases: number

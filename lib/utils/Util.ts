@@ -84,7 +84,11 @@ export default class Util extends null {
                     }
                     let next_link = current_page.meta.pagination.links.next
                     if (next_link) {
-                        next_link = next_link.replace(client.url, "").replace("application", "").replace("client", "").replace(/\//g, "").split("?")
+                        next_link = next_link
+                            .replace(client.url, "")
+                            .replace(/\/?application\/?/, "")
+                            .replace(/\/?client\/?/, "")
+                            .split("?")
                         options.page = next_link[1].split("=")[1]
                         current_page = await client.call({ endpoint: next_link[0], parameters: options })
                     }

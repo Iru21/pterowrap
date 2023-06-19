@@ -150,6 +150,7 @@ export type createServerParams = {
         disk: number
     }
     feature_limits: {
+        allocations: number
         databases: number
         backups: number
     }
